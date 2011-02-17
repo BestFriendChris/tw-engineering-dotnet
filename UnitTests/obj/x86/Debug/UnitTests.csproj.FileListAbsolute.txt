@@ -1,0 +1,11 @@
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\UnitTests\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\UnitTests\bin\Debug\UnitTests.dll
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\UnitTests\bin\Debug\UnitTests.pdb
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\UnitTests\bin\Debug\nunit.framework.dll
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\UnitTests\bin\Debug\nunit.mocks.dll
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\UnitTests\bin\Debug\nunit.framework.xml
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\UnitTests\obj\x86\Debug\UnitTests.dll
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\UnitTests\obj\x86\Debug\UnitTests.pdb
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\UnitTests\bin\Debug\MvcApplication.dll
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\UnitTests\bin\Debug\MvcApplication.pdb
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\UnitTests\bin\Debug\Moq.dll

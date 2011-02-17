@@ -1,0 +1,5 @@
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\MvcApplication\bin\MvcApplication.dll
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\MvcApplication\bin\MvcApplication.pdb
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\MvcApplication\obj\Debug\ResolveAssemblyReference.cache
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\MvcApplication\obj\Debug\MvcApplication.dll
+C:\ThoughtworksTraining\MvcApplication\MvcApplication\MvcApplication\obj\Debug\MvcApplication.pdb
