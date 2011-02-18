@@ -1,0 +1,11 @@
+h2. Frameworks
+
+NUNit
+https://launchpad.net/nunitv2
+
+Mock testing library : Moq
+http://code.google.com/p/moq/
+
+h2. ASP.NET MVC version 3
+
+http://www.asp.net/mvc/tutorials/creating-unit-tests-for-asp-net-mvc-applications-vb
