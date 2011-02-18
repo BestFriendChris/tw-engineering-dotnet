@@ -1,0 +1,16 @@
+﻿@model IEnumerable<VideoWorld.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<ul>
+@foreach (var item in Model) {
+    <li>
+        @item.Title
+    </li>
+}
+</ul>
+

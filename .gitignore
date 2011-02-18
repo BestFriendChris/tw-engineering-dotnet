@@ -1,3 +1,5 @@
 *.Resharper.user
 *.suo
 _Resharper.*/
+*/bin
+*/obj
