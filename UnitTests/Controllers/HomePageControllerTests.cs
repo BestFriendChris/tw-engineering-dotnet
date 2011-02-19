@@ -24,7 +24,7 @@ namespace UnitTests.Controllers
             var controller = new HomePageController();
 
             ViewResult result = controller.Index();
-            List<Movie> movies = (List<Movie>) result.Model;
+            var movies = (List<Movie>) result.Model;
             Assert.That(movies.Count, Is.EqualTo(3));
         }
     }
