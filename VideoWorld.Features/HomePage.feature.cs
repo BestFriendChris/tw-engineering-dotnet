@@ -23,7 +23,7 @@ namespace VideoWorld.Features
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "SpecFlowFeature1.feature"
+#line 1 "HomePage.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
@@ -55,11 +55,11 @@ namespace VideoWorld.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("View list of movies on Home Page")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("web")]
         public virtual void ViewListOfMoviesOnHomePage()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View list of movies on Home Page", new string[] {
-                        "mytag"});
+                        "web"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
@@ -67,7 +67,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
  testRunner.Then("the list includes the movie \"Avatar\"");
 #line 10
- testRunner.And("the list includes the movie \"Up in the air\"");
+ testRunner.And("the list includes the movie \"Up in the Air\"");
 #line 11
  testRunner.And("the list includes the movie \"Finding Nemo\"");
 #line hidden
