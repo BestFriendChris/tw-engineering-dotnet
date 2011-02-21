@@ -13,9 +13,9 @@ namespace VideoWorld.Controllers
             this.customer = customer;
         }
 
-        public RedirectResult Index(string movieName)
+        public RedirectResult Index(string title)
         {
-            customer.Cart.AddMovie(new Movie(movieName));
+            customer.Cart.AddMovie(new Movie(title));
             return Redirect("/");
         }
     }

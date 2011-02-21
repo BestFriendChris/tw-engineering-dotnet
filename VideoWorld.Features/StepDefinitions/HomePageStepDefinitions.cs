@@ -35,6 +35,9 @@ namespace VideoWorld.Features.StepDefinitions
             Assert.IsNotNull(addButton);
 
             addButton.Click();
+
+            //Note: waiting for the page to reload after the movie is added
+            WebDriver.WaitForElement(By.ClassName("cart"));
         }
 
         [Then(@"I see ""(.*) item in your cart""")]

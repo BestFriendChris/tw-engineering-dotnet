@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject">
+      <HintPath>..\lib\runtime\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\lib\runtime\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages" />
     <Reference Include="System.Web.Helpers" />
@@ -57,6 +63,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\NinjectSessionScopingExtension.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -64,6 +71,7 @@
     </Compile>
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\HomePageModel.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

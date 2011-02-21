@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Ninject;
+using Ninject.Web.Mvc;
+using VideoWorld.Configuration;
+using VideoWorld.Models;
 
 namespace VideoWorld
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : NinjectHttpApplication
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
@@ -29,12 +34,25 @@ namespace VideoWorld
 
         }
 
-        protected void Application_Start()
+        protected override IKernel CreateKernel()
         {
-            AreaRegistration.RegisterAllAreas();
+            var kernel = new StandardKernel();
+            kernel.Load(Assembly.GetExecutingAssembly());
 
+            kernel.Bind<Customer>().To(typeof(Customer)).InSessionScope();
+
+            return kernel;
+        }
+
+        protected override void OnApplicationStarted()
+        {
+            base.OnApplicationStarted();
+
+            AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
     }
+
+
 }

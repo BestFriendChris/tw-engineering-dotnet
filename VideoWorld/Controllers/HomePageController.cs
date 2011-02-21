@@ -7,12 +7,19 @@ namespace VideoWorld.Controllers
 {
     public class HomePageController : Controller
     {
+        private readonly Customer customer;
+
+        public HomePageController(Customer customer)
+        {
+            this.customer = customer;
+        }
+
         public ViewResult Index()
         {
             var movieRepo = new MovieRepository();
             List<Movie> movies = movieRepo.FindAllMovies();
 
-            return View("Index", movies);
+            return View("Index", new HomePageModel(movies, customer));
         }
     }
 }
