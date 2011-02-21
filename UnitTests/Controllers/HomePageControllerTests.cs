@@ -27,5 +27,6 @@ namespace UnitTests.Controllers
             var movies = (List<Movie>) result.Model;
             Assert.That(movies.Count, Is.EqualTo(3));
         }
+
     }
 }

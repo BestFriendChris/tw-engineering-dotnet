@@ -4,8 +4,14 @@
 	I want to see which movies are available
 
 @web
-Scenario: View list of movies on Home Page
-	When I go to the home page
+Scenario: View available movies
+	When I view the list of available movies
 	Then the list includes the movie "Avatar"
 	And the list includes the movie "Up in the Air"
 	And the list includes the movie "Finding Nemo"
+
+@web
+Scenario: Add some movies to my shopping cart  
+	When I view the list of available movies
+	And I add the movie "Avatar" to my cart
+	Then I see "1 item in your cart"

@@ -54,22 +54,41 @@ namespace VideoWorld.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("View list of movies on Home Page")]
+        [NUnit.Framework.DescriptionAttribute("View available movies")]
         [NUnit.Framework.CategoryAttribute("web")]
-        public virtual void ViewListOfMoviesOnHomePage()
+        public virtual void ViewAvailableMovies()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View list of movies on Home Page", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View available movies", new string[] {
                         "web"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.When("I go to the home page");
+ testRunner.When("I view the list of available movies");
 #line 9
  testRunner.Then("the list includes the movie \"Avatar\"");
 #line 10
  testRunner.And("the list includes the movie \"Up in the Air\"");
 #line 11
  testRunner.And("the list includes the movie \"Finding Nemo\"");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add some movies to my shopping cart")]
+        [NUnit.Framework.CategoryAttribute("web")]
+        public virtual void AddSomeMoviesToMyShoppingCart()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add some movies to my shopping cart", new string[] {
+                        "web"});
+#line 14
+this.ScenarioSetup(scenarioInfo);
+#line 15
+ testRunner.When("I view the list of available movies");
+#line 16
+ testRunner.And("I add the movie \"Avatar\" to my cart");
+#line 17
+ testRunner.Then("I see \"1 item in your cart\"");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

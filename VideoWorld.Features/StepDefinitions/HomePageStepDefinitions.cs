@@ -13,7 +13,7 @@ namespace VideoWorld.Features.StepDefinitions
     [Binding]
     public class HomePageStepDefinitions : SeleniumStepsBase
     {
-        [When(@"I go to the home page")]
+        [When(@"I view the list of available movies")]
         public void WhenIGoToTheHomePage()
         {            
             WebDriver.Navigate().GoToUrl("http://localhost:49785/");
@@ -22,8 +22,30 @@ namespace VideoWorld.Features.StepDefinitions
         [Then(@"the list includes the movie ""(.*)""")]
         public void ThenTheListIncludesTheMovieAvatar(string movieName)
         {
-            var element = WebDriver.FindElement(By.ClassName("movie_title"), e => e.Text.Contains(movieName));
+            var element = WebDriver.FindElement(By.ClassName("movie"), e => e.Text.Contains(movieName));
             Assert.IsNotNull(element);
+        }
+
+        [When(@"I add the movie ""(.*)"" to my cart")]
+        public void WhenIAddTheMovieAvatarToMyCart(string movieName)
+        {
+            var element = WebDriver.FindElement(By.ClassName("movie"), e => e.Text.Contains(movieName));
+            Assert.IsNotNull(element);
+            var addButton = element.FindElement(By.ClassName("addToCart"));
+            Assert.IsNotNull(addButton);
+
+            addButton.Click();
+        }
+
+        [Then(@"I see ""(.*) item in your cart""")]
+        public void ThenISee1ItemInYourCart(int numberOfMovies)
+        {
+            var cartElement = WebDriver.FindElement(By.ClassName("cart"));
+
+            Assert.IsNotNull(cartElement);
+
+            Assert.That(cartElement.Text.Contains(string.Format("{0} item(s) in your cart", numberOfMovies)), 
+                "Message was {0}", cartElement.Text);
         }
 
     }

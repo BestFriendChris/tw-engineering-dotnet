@@ -6,11 +6,16 @@
 
 <h2>Index</h2>
 
-<ul>
-@foreach (var item in Model) {
-    <li class="movie_title">
-        @item.Title
-    </li>
+<div class="cart">
+   0 item(s) in your cart.
+</div>
+
+<div class="movies">
+@foreach (var item in Model) {    
+    <div class="movie">
+        <span class="title">@item.Title</span>
+        <form method="post" action="/cart"><input type="submit" class="addToCart" name="addToCart" value="Add"/></form>
+    </div>
 }
-</ul>
+</div>
 
