@@ -8,9 +8,9 @@ namespace VideoWorld.Models
         {
             return new List<Movie>()
                        {
-                           new Movie("Avatar"),
-                           new Movie("Up in the Air"),
-                           new Movie("Finding Nemo")
+                           new Movie("Avatar", new RegularPrice()),
+                           new Movie("Up in the Air", new RegularPrice()),
+                           new Movie("Finding Nemo", new RegularPrice())
                        };
         }
     }

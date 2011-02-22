@@ -70,10 +70,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\ChildrensPrice.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\HomePageModel.cs" />
+    <Compile Include="Models\IPrice.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieRepository.cs" />
+    <Compile Include="Models\NewReleasePrice.cs" />
+    <Compile Include="Models\RegularPrice.cs" />
     <Compile Include="Models\Rental.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

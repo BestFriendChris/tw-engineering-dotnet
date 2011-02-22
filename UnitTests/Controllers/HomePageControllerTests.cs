@@ -14,7 +14,7 @@ namespace UnitTests.Controllers
         [SetUp]
         public void SetUp()
         {
-            customer = new Customer();
+            customer = new Customer("John Smith");
             controller = new HomePageController(customer);
         }
 

@@ -52,8 +52,12 @@
   <ItemGroup>
     <Compile Include="Controllers\CartControllerTests.cs" />
     <Compile Include="Controllers\HomePageControllerTests.cs" />
+    <Compile Include="Models\ChildrensPriceTest.cs" />
+    <Compile Include="Models\CustomerTests.cs" />
     <Compile Include="Models\MovieRepositoryTests.cs" />
     <Compile Include="Models\MovieTests.cs" />
+    <Compile Include="Models\NewReleasePriceTests.cs" />
+    <Compile Include="Models\RegularPriceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

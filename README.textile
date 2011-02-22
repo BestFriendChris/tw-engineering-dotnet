@@ -14,3 +14,28 @@ h2. UI testing
 
 http://www.specflow.org/
 http://smnbss.wordpress.com/2010/11/02/unveil-the-power-of-bdd-with-specflow-and-selenium-part-1/
+
+h1. Notes on the Code
+
+h2. Code smells
+
+These are code smells that we might want to discuss with the participants
+
+h3. Prices
+
+* The IPrice.GetCharge method could be given a more descriptive name
+* The unit tests for the IPrice implementations only cover "normal" cases (no edge cases)
+* There are no tests for the frequent renter points in IPrice
+
+h3. Movie
+
+* Movie has a price, as well as a get and set property
+* Movie allows a null price
+
+Take a look at MovieTests, there is a Law of Demeter violation :    	
+	
+	Assert.AreEqual(1, RegularMovieInstance.Price.GetFrequentRenterPoints(1));
+
+This chould be refactored to look like this:
+
+	Assert.AreEqual(1, RegularMovieInstance.GetFrequentRenterPoints(1));

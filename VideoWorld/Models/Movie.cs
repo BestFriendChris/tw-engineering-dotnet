@@ -4,23 +4,26 @@ namespace VideoWorld.Models
 {
     public class Movie
     {
-        private readonly string _title;
+        private readonly string title;
 
-        public Movie(string title)
+        public IPrice Price { get; set; }
+
+        public Movie(string title, IPrice price)
         {
+            Price = price;
             if (string.IsNullOrEmpty(title))
             {
                 throw new ArgumentNullException("title");
             }
 
-            _title = title;
+            this.title = title;
         }
 
         public bool Equals(Movie other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return Equals(other._title, _title);
+            return Equals(other.title, title);
         }
 
         public override bool Equals(object obj)
@@ -33,12 +36,13 @@ namespace VideoWorld.Models
 
         public override int GetHashCode()
         {
-            return (_title != null ? _title.GetHashCode() : 0);
+            return (title != null ? title.GetHashCode() : 0);
         }
 
         public string Title
         {
-            get { return _title; }
+            get { return title; }
         }
+
     }
 }
