@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
@@ -26,8 +27,20 @@ namespace UnitTests.Controllers
             var customer = new Customer();
             var controller = new CartController(customer);
             controller.Index("Avatar");
-            Assert.That(customer.Cart.Contains(new Movie("Avatar")));
+            List<Rental> rentals = customer.Cart.Rentals;
+            Assert.That(rentals.Any(r => r.Movie.Title == "Avatar"));
         }
+
+        [Test]
+        public void ShouldCreateRentalForOneDay()
+        {
+            var customer = new Customer();
+            var controller = new CartController(customer);
+            controller.Index("Avatar");
+            List<Rental> rentals = customer.Cart.Rentals;
+            Assert.That(rentals.First(r => r.Movie.Title == "Avatar").Period, Is.EqualTo(1));
+        }
+
 
         [Test]
         public void ShouldCountMultipleMovies()
@@ -38,6 +51,15 @@ namespace UnitTests.Controllers
             Assert.That(customer.Cart.Count, Is.EqualTo(1));
             controller.Index("Waterworld");
             Assert.That(customer.Cart.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void IndexShouldShowCurrentCart()
+        {
+            var customer = new Customer();
+            var controller = new CartController(customer);
+            ViewResult result = controller.Index();
+            Assert.That(result.Model, Is.SameAs(customer.Cart));
         }
     }
 }

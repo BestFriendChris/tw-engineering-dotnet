@@ -92,6 +92,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HomePage.feature</DependentUpon>
     </Compile>
+    <Compile Include="Cart.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cart.feature</DependentUpon>
+    </Compile>
     <Compile Include="Support\DriverExtensions.cs" />
     <Compile Include="Support\ScenarioContextWebExtensions.cs" />
     <Compile Include="StepDefinitions\HomePageStepDefinitions.cs" />
@@ -103,6 +108,10 @@
     <None Include="HomePage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>HomePage.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Cart.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Cart.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup />

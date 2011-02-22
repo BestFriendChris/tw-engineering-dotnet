@@ -27,7 +27,7 @@ namespace VideoWorld.Features.StepDefinitions
         }
 
         [When(@"I add the movie ""(.*)"" to my cart")]
-        public void WhenIAddTheMovieAvatarToMyCart(string movieName)
+        public void WhenIAddAMovieToMyCart(string movieName)
         {
             var element = WebDriver.FindElement(By.ClassName("movie"), e => e.Text.Contains(movieName));
             Assert.IsNotNull(element);
@@ -50,6 +50,28 @@ namespace VideoWorld.Features.StepDefinitions
             Assert.That(cartElement.Text.Contains(string.Format("{0} item(s) in your cart", numberOfMovies)), 
                 "Message was {0}", cartElement.Text);
         }
+
+        [Given(@"I have added the movie ""(.*)""")]
+        public void GivenIHaveAddedTheMovie(string movieName)
+        {
+            WhenIGoToTheHomePage();
+            WhenIAddAMovieToMyCart(movieName);
+        }
+
+        [When(@"I view my Cart")]
+        public void WhenIViewMyCart()
+        {
+            WebDriver.Navigate().GoToUrl("http://localhost:49785/cart");
+        }
+
+        [Then(@"I should see the movie ""(.*)"" with a (\d+) day rental")]
+        public void ThenIShouldSeeTheMovieAvatarWithA1DayRental(string movieName, int periodInDays)
+        {
+            var element = WebDriver.FindElement(By.ClassName("rental"), e => e.Text.Contains(movieName));
+            var periodelement = element.FindElement(By.ClassName("period"));
+            Assert.That(periodelement.Text, Is.EqualTo("1"));
+        }
+
 
     }
 

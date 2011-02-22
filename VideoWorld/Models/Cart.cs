@@ -5,21 +5,28 @@ namespace VideoWorld.Models
 {
     public class Cart
     {
-        private readonly List<Movie> movies = new List<Movie>();
+        private readonly List<Rental> rentals = new List<Rental>();
 
-        public bool Contains(Movie movie)
+        public bool Contains(Rental movie)
         {
-            return movies.Contains(movie);
+            return rentals.Contains(movie);
         }
 
         public int Count
         {
-            get { return movies.Count; }
+            get { return rentals.Count; }
+        }
+
+        public List<Rental> Rentals
+        {
+            get {
+                return rentals;
+            }
         }
 
         public void AddMovie(Movie movie)
         {
-            movies.Add(movie);
+            rentals.Add(new Rental(movie, 1));
         }
     }
 }
