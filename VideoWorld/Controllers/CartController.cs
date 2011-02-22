@@ -13,8 +13,8 @@ namespace VideoWorld.Controllers
             this.customer = customer;
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public RedirectResult Index(string title)
+        [AcceptVerbs(HttpVerbs.Post), ActionName("Index")]
+        public RedirectResult RentMovie(string title)
         {
             customer.Cart.AddMovie(new Movie(title));
             return Redirect("/");

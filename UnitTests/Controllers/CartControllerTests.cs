@@ -17,7 +17,7 @@ namespace UnitTests.Controllers
         {
             var controller = new CartController(new Customer());
 
-            RedirectResult result = controller.Index("Avatar");
+            RedirectResult result = controller.RentMovie("Avatar");
             Assert.That(result.Url, Is.EqualTo("/"));
         }
 
@@ -26,7 +26,7 @@ namespace UnitTests.Controllers
         {
             var customer = new Customer();
             var controller = new CartController(customer);
-            controller.Index("Avatar");
+            controller.RentMovie("Avatar");
             List<Rental> rentals = customer.Cart.Rentals;
             Assert.That(rentals.Any(r => r.Movie.Title == "Avatar"));
         }
@@ -36,7 +36,7 @@ namespace UnitTests.Controllers
         {
             var customer = new Customer();
             var controller = new CartController(customer);
-            controller.Index("Avatar");
+            controller.RentMovie("Avatar");
             List<Rental> rentals = customer.Cart.Rentals;
             Assert.That(rentals.First(r => r.Movie.Title == "Avatar").Period, Is.EqualTo(1));
         }
@@ -47,9 +47,9 @@ namespace UnitTests.Controllers
         {
             var customer = new Customer();
             var controller = new CartController(customer);
-            controller.Index("Avatar");
+            controller.RentMovie("Avatar");
             Assert.That(customer.Cart.Count, Is.EqualTo(1));
-            controller.Index("Waterworld");
+            controller.RentMovie("Waterworld");
             Assert.That(customer.Cart.Count, Is.EqualTo(2));
         }
 
