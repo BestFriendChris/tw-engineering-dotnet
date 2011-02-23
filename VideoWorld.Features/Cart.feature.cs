@@ -70,6 +70,27 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Check out")]
+        [NUnit.Framework.CategoryAttribute("web")]
+        public virtual void CheckOut()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check out", new string[] {
+                        "web"});
+#line 13
+this.ScenarioSetup(scenarioInfo);
+#line 14
+ testRunner.Given("I have added the movie \"Avatar\"");
+#line 15
+ testRunner.When("I view my Cart");
+#line 16
+ testRunner.And("I check out");
+#line 17
+ testRunner.Then("I should see my statement");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

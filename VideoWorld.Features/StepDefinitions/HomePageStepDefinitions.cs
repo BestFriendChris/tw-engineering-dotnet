@@ -72,6 +72,21 @@ namespace VideoWorld.Features.StepDefinitions
             Assert.That(periodelement.Text, Is.EqualTo("1"));
         }
 
+        [When(@"I check out")]
+        public void WhenICheckOut()
+        {
+            var element = WebDriver.FindElement(By.ClassName("checkout"));
+            element.Click();
+
+            WebDriver.WaitForElement(By.ClassName("statement"));
+        }
+
+        [Then(@"I should see my statement")]
+        public void ThenIShouldSeeMyStatement()
+        {
+            var statementElement = WebDriver.FindElement(By.ClassName("statement"));
+            Assert.That(statementElement.Text.Contains("Amount charged"));
+        }
 
     }
 

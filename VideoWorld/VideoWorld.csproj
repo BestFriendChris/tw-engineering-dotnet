@@ -66,6 +66,7 @@
     <Compile Include="Configuration\NinjectSessionScopingExtension.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
+    <Compile Include="Controllers\StatementsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -79,6 +80,8 @@
     <Compile Include="Models\NewReleasePrice.cs" />
     <Compile Include="Models\RegularPrice.cs" />
     <Compile Include="Models\Rental.cs" />
+    <Compile Include="Models\Statement.cs" />
+    <Compile Include="Models\StatementRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +102,7 @@
     <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <None Include="Views\Cart\Index.cshtml" />
+    <None Include="Views\Statements\Show.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

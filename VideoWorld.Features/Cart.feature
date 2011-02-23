@@ -8,3 +8,10 @@ Scenario: View my Cart
 	Given I have added the movie "Avatar"
 	When I view my Cart
 	Then I should see the movie "Avatar" with a 1 day rental
+
+@web
+Scenario: Check out
+	Given I have added the movie "Avatar"
+	When I view my Cart
+	And I check out
+	Then I should see my statement

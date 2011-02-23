@@ -25,6 +25,12 @@ namespace VideoWorld
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            
+            routes.MapRoute(
+                "Statements", // Route name
+                "{controller}/{id}", // URL with parameters
+                new { controller = "Statements", action = "Show"} // Parameter defaults
+            );
 
             routes.MapRoute(
                 "Default", // Route name
@@ -40,6 +46,7 @@ namespace VideoWorld
             kernel.Load(Assembly.GetExecutingAssembly());
 
             kernel.Bind<Customer>().To(typeof(Customer)).InSessionScope();
+            kernel.Bind<StatementRepository>().To(typeof(StatementRepository)).InSingletonScope();
 
             return kernel;
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Ninject;
 
 namespace VideoWorld.Models
 {
@@ -11,6 +12,12 @@ namespace VideoWorld.Models
         public Customer(string name)
         {
             Name = name;
+        }
+
+        [Inject]
+        public Customer()
+        {
+            Name = "Unknown Customer";
         }
 
         public Cart Cart
