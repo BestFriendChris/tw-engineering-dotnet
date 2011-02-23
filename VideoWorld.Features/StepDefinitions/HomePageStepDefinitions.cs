@@ -64,6 +64,17 @@ namespace VideoWorld.Features.StepDefinitions
             WebDriver.Navigate().GoToUrl("http://localhost:49785/cart");
         }
 
+        [When(@"I navigate to my Cart")]
+        public void WhenINavigateToMyCart()
+        {
+            WebDriver.Navigate().GoToUrl("http://localhost:49785/");
+            var element = WebDriver.FindElement(By.TagName("a"), e => e.Text == "View Cart");
+            Assert.IsNotNull(element);
+            element.Click();
+
+            WebDriver.WaitForElement(By.ClassName("rentals"));
+        }
+
         [Then(@"I should see the movie ""(.*)"" with a (\d+) day rental")]
         public void ThenIShouldSeeTheMovieAvatarWithA1DayRental(string movieName, int periodInDays)
         {

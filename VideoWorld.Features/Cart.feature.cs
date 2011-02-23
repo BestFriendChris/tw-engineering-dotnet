@@ -83,7 +83,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 14
  testRunner.Given("I have added the movie \"Avatar\"");
 #line 15
- testRunner.When("I view my Cart");
+ testRunner.When("I navigate to my Cart");
 #line 16
  testRunner.And("I check out");
 #line 17

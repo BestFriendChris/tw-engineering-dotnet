@@ -12,6 +12,6 @@ Scenario: View my Cart
 @web
 Scenario: Check out
 	Given I have added the movie "Avatar"
-	When I view my Cart
+	When I navigate to my Cart
 	And I check out
 	Then I should see my statement
