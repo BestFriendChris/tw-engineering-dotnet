@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace VideoWorld.Models
 {
@@ -15,6 +17,11 @@ namespace VideoWorld.Models
         {
             statements.Add(statement);
             return statements.Count - 1;
+        }
+
+        public IEnumerable<Statement> FindByCustomer(Customer customer)
+        {
+            return statements.Where(s => s.Customer == customer);
         }
     }
 }

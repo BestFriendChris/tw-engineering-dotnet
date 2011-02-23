@@ -102,6 +102,7 @@
     <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <None Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Statements\Index.cshtml" />
     <None Include="Views\Statements\Show.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

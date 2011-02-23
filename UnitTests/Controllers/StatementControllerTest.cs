@@ -51,5 +51,19 @@ namespace UnitTests.Controllers
             ViewResult result = controller.Show(0);
             Assert.That(result.Model, Is.SameAs(statement));
         }
+
+        [Test]
+        public void ShouldShowStatementHistory()
+        {
+            var s1 = new Statement(customer);
+            var s2 = new Statement(customer);
+
+            repository.Add(s1);
+            repository.Add(s2);
+
+            ViewResult result = controller.Index();
+            Assert.That(result.Model, Contains.Item(s1));
+            Assert.That(result.Model, Contains.Item(s2));
+        }
     }
 }

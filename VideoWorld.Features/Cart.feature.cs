@@ -91,6 +91,25 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("View History")]
+        [NUnit.Framework.CategoryAttribute("web")]
+        public virtual void ViewHistory()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View History", new string[] {
+                        "web"});
+#line 20
+this.ScenarioSetup(scenarioInfo);
+#line 21
+ testRunner.Given("I have rented the movie \"Avatar\"");
+#line 22
+ testRunner.When("I navigate to my History");
+#line 23
+ testRunner.Then("I should see 1 history item");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

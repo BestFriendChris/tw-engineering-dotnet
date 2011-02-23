@@ -54,6 +54,7 @@
     <Compile Include="Controllers\StatementControllerTest.cs" />
     <Compile Include="Controllers\HomePageControllerTests.cs" />
     <Compile Include="Models\ChildrensPriceTest.cs" />
+    <Compile Include="Models\StatementRepositoryTests.cs" />
     <Compile Include="Models\CustomerTests.cs" />
     <Compile Include="Models\MovieRepositoryTests.cs" />
     <Compile Include="Models\MovieTests.cs" />

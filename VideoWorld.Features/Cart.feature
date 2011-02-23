@@ -15,3 +15,9 @@ Scenario: Check out
 	When I navigate to my Cart
 	And I check out
 	Then I should see my statement
+
+@web
+Scenario: View History
+	Given I have rented the movie "Avatar"
+	When I navigate to my History
+	Then I should see 1 history item

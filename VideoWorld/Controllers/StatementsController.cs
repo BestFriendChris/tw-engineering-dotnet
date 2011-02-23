@@ -28,5 +28,10 @@ namespace VideoWorld.Controllers
             var statement = repository.FindById(id);
             return View("Show", statement);
         }
+
+        public ViewResult Index()
+        {
+            return View("Index", repository.FindByCustomer(customer));
+        }
     }
 }

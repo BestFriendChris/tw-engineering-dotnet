@@ -15,8 +15,12 @@ namespace VideoWorld.Features.StepDefinitions
     {
         [When(@"I view the list of available movies")]
         public void WhenIGoToTheHomePage()
-        {            
-            WebDriver.Navigate().GoToUrl("http://localhost:49785/");
+        {
+            var element = WebDriver.FindElement(By.TagName("a"), e => e.Text == "View Movies");
+            Assert.IsNotNull(element);
+            element.Click();
+
+            WebDriver.WaitForElement(By.ClassName("movies"));
         }
 
         [Then(@"the list includes the movie ""(.*)""")]
@@ -61,13 +65,12 @@ namespace VideoWorld.Features.StepDefinitions
         [When(@"I view my Cart")]
         public void WhenIViewMyCart()
         {
-            WebDriver.Navigate().GoToUrl("http://localhost:49785/cart");
+            WhenINavigateToMyCart();
         }
 
         [When(@"I navigate to my Cart")]
         public void WhenINavigateToMyCart()
         {
-            WebDriver.Navigate().GoToUrl("http://localhost:49785/");
             var element = WebDriver.FindElement(By.TagName("a"), e => e.Text == "View Cart");
             Assert.IsNotNull(element);
             element.Click();
@@ -86,6 +89,7 @@ namespace VideoWorld.Features.StepDefinitions
         [When(@"I check out")]
         public void WhenICheckOut()
         {
+            WhenINavigateToMyCart();
             var element = WebDriver.FindElement(By.ClassName("checkout"));
             element.Click();
 
@@ -99,6 +103,30 @@ namespace VideoWorld.Features.StepDefinitions
             Assert.That(statementElement.Text.Contains("Amount charged"));
         }
 
+        [Given(@"I have rented the movie ""(.*)""")]
+        public void GivenIHaveRentedTheMovieAvatar(string movieName)
+        {
+            WhenIGoToTheHomePage();
+            WhenIAddAMovieToMyCart(movieName);
+            WhenICheckOut();
+        }
+
+        [When(@"I navigate to my History")]
+        public void WhenINavigateToMyHistory()
+        {
+            var element = WebDriver.FindElement(By.TagName("a"), e => e.Text == "View History");
+            Assert.IsNotNull(element);
+            element.Click();
+
+            WebDriver.WaitForElement(By.ClassName("statements"));
+        }
+
+        [Then(@"I should see 1 history item")]
+        public void ThenIShouldSee1HistoryItem()
+        {
+            var elements = WebDriver.FindElements(By.ClassName("statement"));
+            Assert.That(elements.Count, Is.EqualTo(1));
+        }
     }
 
 
