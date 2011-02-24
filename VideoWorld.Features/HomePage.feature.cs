@@ -63,12 +63,14 @@ namespace VideoWorld.Features
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.When("I view the list of available movies");
+ testRunner.Given("I am logged in as \"Fred\"");
 #line 9
- testRunner.Then("the list includes the movie \"Avatar\"");
+ testRunner.When("I view the list of available movies");
 #line 10
- testRunner.And("the list includes the movie \"Up in the Air\"");
+ testRunner.Then("the list includes the movie \"Avatar\"");
 #line 11
+ testRunner.And("the list includes the movie \"Up in the Air\"");
+#line 12
  testRunner.And("the list includes the movie \"Finding Nemo\"");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -81,13 +83,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add some movies to my shopping cart", new string[] {
                         "web"});
-#line 14
-this.ScenarioSetup(scenarioInfo);
 #line 15
- testRunner.When("I view the list of available movies");
+this.ScenarioSetup(scenarioInfo);
 #line 16
- testRunner.And("I add the movie \"Avatar\" to my cart");
+ testRunner.Given("I am logged in as \"Fred\"");
 #line 17
+ testRunner.When("I view the list of available movies");
+#line 18
+ testRunner.And("I add the movie \"Avatar\" to my cart");
+#line 19
  testRunner.Then("I see \"1 item in your cart\"");
 #line hidden
             testRunner.CollectScenarioErrors();

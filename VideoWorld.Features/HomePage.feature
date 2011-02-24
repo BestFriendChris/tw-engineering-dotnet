@@ -5,6 +5,7 @@
 
 @web
 Scenario: View available movies
+	Given I am logged in as "Fred"
 	When I view the list of available movies
 	Then the list includes the movie "Avatar"
 	And the list includes the movie "Up in the Air"
@@ -12,6 +13,7 @@ Scenario: View available movies
 
 @web
 Scenario: Add some movies to my shopping cart  
+	Given I am logged in as "Fred"
 	When I view the list of available movies
 	And I add the movie "Avatar" to my cart
 	Then I see "1 item in your cart"

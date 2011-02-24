@@ -34,6 +34,9 @@
     <Reference Include="Moq">
       <HintPath>..\lib\test\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="MvcFakes">
+      <HintPath>..\lib\test\MvcFakes.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\lib\test\nunit.framework.dll</HintPath>
     </Reference>
@@ -42,6 +45,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CartControllerTests.cs" />
+    <Compile Include="Controllers\LoginControllerTests.cs" />
     <Compile Include="Controllers\StatementControllerTest.cs" />
     <Compile Include="Controllers\HomePageControllerTests.cs" />
     <Compile Include="Models\ChildrensPriceTest.cs" />

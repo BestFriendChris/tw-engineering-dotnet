@@ -8,6 +8,7 @@ using System.Web.Routing;
 using Ninject;
 using Ninject.Web.Mvc;
 using VideoWorld.Configuration;
+using VideoWorld.Controllers;
 using VideoWorld.Models;
 
 namespace VideoWorld
@@ -20,6 +21,7 @@ namespace VideoWorld
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new KnownUsersAuthorizationFilter());
         }
 
         public static void RegisterRoutes(RouteCollection routes)
@@ -60,6 +62,4 @@ namespace VideoWorld
             RegisterRoutes(RouteTable.Routes);
         }
     }
-
-
 }

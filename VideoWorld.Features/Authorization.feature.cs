@@ -17,20 +17,21 @@ namespace VideoWorld.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.5.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Shopping cart")]
-    public partial class ShoppingCartFeature
+    [NUnit.Framework.DescriptionAttribute("Authorization")]
+    public partial class AuthorizationFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "Cart.feature"
+#line 1 "Authorization.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Shopping cart", "In order to rent movies\nAs a customer\nI want to see the movies I have chosen", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Authorization", "In order that my details are private\nAs a customer\nI want the system to require a" +
+                    " login", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -53,66 +54,41 @@ namespace VideoWorld.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("View my Cart")]
+        [NUnit.Framework.DescriptionAttribute("Not logged in")]
         [NUnit.Framework.CategoryAttribute("web")]
-        public virtual void ViewMyCart()
+        public virtual void NotLoggedIn()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View my Cart", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Not logged in", new string[] {
                         "web"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I am logged in as \"Fred\"");
+ testRunner.Given("I am not logged in");
 #line 9
- testRunner.And("I have added the movie \"Avatar\"");
+ testRunner.When("I try to navigate to the home page");
 #line 10
- testRunner.When("I view my Cart");
-#line 11
- testRunner.Then("I should see the movie \"Avatar\" with a 1 day rental");
+ testRunner.Then("the system shows me the login page");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Check out")]
+        [NUnit.Framework.DescriptionAttribute("Logging in")]
         [NUnit.Framework.CategoryAttribute("web")]
-        public virtual void CheckOut()
+        public virtual void LoggingIn()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Check out", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Logging in", new string[] {
                         "web"});
+#line 13
+this.ScenarioSetup(scenarioInfo);
 #line 14
-this.ScenarioSetup(scenarioInfo);
+ testRunner.Given("I am not logged in");
 #line 15
- testRunner.Given("I am logged in as \"Fred\"");
+ testRunner.When("I navigate to the login page");
 #line 16
- testRunner.And("I have added the movie \"Avatar\"");
+ testRunner.And("login as \"Fred\"");
 #line 17
- testRunner.When("I navigate to my Cart");
-#line 18
- testRunner.And("I check out");
-#line 19
- testRunner.Then("I should see my statement");
-#line hidden
-            testRunner.CollectScenarioErrors();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("View History")]
-        [NUnit.Framework.CategoryAttribute("web")]
-        public virtual void ViewHistory()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("View History", new string[] {
-                        "web"});
-#line 22
-this.ScenarioSetup(scenarioInfo);
-#line 23
- testRunner.Given("I am logged in as \"Fred\"");
-#line 24
- testRunner.And("I have rented the movie \"Avatar\"");
-#line 25
- testRunner.When("I navigate to my History");
-#line 26
- testRunner.Then("I should see 1 history item");
+ testRunner.Then("the system shows me the home page");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

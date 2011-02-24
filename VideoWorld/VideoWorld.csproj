@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MvcFakes">
+      <HintPath>..\lib\test\MvcFakes.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\lib\runtime\Ninject.dll</HintPath>
     </Reference>
@@ -66,6 +69,8 @@
     <Compile Include="Configuration\NinjectSessionScopingExtension.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
+    <Compile Include="Controllers\KnownUsersAuthorizationFilter.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\StatementsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -103,6 +108,7 @@
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <None Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Statements\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
     <None Include="Views\Statements\Show.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

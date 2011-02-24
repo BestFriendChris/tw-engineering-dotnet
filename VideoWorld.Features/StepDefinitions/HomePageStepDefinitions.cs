@@ -13,6 +13,55 @@ namespace VideoWorld.Features.StepDefinitions
     [Binding]
     public class HomePageStepDefinitions : SeleniumStepsBase
     {
+        private const string RootUrl = "http://localhost:49785";
+
+        [Given(@"I am not logged in")]
+        public void GivenIAmNotLoggedIn()
+        {
+            // ?
+        }
+
+        [Then(@"the system shows me the login page")]
+        public void ThenTheSystemShowsMeTheLoginPage()
+        {
+            var element = WebDriver.FindElement(By.TagName("h2"), e => e.Text == "Login");
+            Assert.IsNotNull(element);
+        }
+
+        [When(@"I navigate to the login page")]
+        public void WhenINavigateToTheLoginPage()
+        {
+            WebDriver.Navigate().GoToUrl(RootUrl + "/login");
+        }
+
+        [When(@"login as ""(.*)""")]
+        public void WhenLoginAs(string username)
+        {
+            var textField = WebDriver.FindElement(By.TagName("input"), e => e.GetAttribute("name") == "username");
+            Assert.IsNotNull(textField);
+            textField.SendKeys(username);
+
+            var button = WebDriver.FindElement(By.TagName("input"), e => e.GetAttribute("name") == "login");
+            Assert.IsNotNull(button);
+            button.Click();
+
+            WebDriver.WaitForElement(By.ClassName("movies"));
+        }
+
+        [Given(@"I am logged in as ""(.*)""")]
+        public void GivenIAmLoggedInAs(string username)
+        {
+            WhenINavigateToTheLoginPage();
+            WhenLoginAs(username);
+        }
+
+        [Then(@"the system shows me the home page")]
+        public void ThenTheSystemShowsMeTheHomePage()
+        {
+            var element = WebDriver.FindElement(By.TagName("h2"), e => e.Text == "Index");
+            Assert.IsNotNull(element);
+        }
+
         [When(@"I view the list of available movies")]
         public void WhenIGoToTheHomePage()
         {
@@ -21,6 +70,18 @@ namespace VideoWorld.Features.StepDefinitions
             element.Click();
 
             WebDriver.WaitForElement(By.ClassName("movies"));
+        }
+
+        [When(@"I try to navigate to the home page")]
+        public void WhenITryToNavigateToTheHomePage()
+        {
+            WebDriver.Navigate().GoToUrl(RootUrl);
+        }
+
+        [When(@"I navigate to the home page")]
+        public void WhenINavigateToTheHomePage()
+        {
+            WhenIGoToTheHomePage();
         }
 
         [Then(@"the list includes the movie ""(.*)""")]
