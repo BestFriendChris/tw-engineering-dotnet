@@ -15,6 +15,16 @@ h2. UI testing
 http://www.specflow.org/
 http://smnbss.wordpress.com/2010/11/02/unveil-the-power-of-bdd-with-specflow-and-selenium-part-1/
 
+h2 Selenium v2 (Webdriver)
+
+We use selenium for testing the app. This can be kind of slow if you use Firefox or IE.
+
+You can use HtmlUnit via the RemoteDriver by uncommenting the appropriate code in SeleniumSupport.cs.
+Note that for this to work the selenium remote driver must be running. This is checked into the lib/test
+directory. You can run it by doing:
+
+	java -jar lib\test\selenium-server-standalone-2.0b2.jar
+
 h1. Notes on the Code
 
 h2. Code smells
@@ -27,7 +37,7 @@ h3. Prices
 * The unit tests for the IPrice implementations only cover "normal" cases (no edge cases)
 * There are no tests for the frequent renter points in IPrice
 
-h3. Movie
+ h3. Movie
 
 * Movie has a price, as well as a get and set property
 * Movie allows a null price
