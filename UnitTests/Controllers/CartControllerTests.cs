@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using MvcContrib.TestHelper;
 using NUnit.Framework;
 using UnitTests.Models;
 using VideoWorld.Controllers;
@@ -12,11 +13,24 @@ namespace UnitTests.Controllers
 {
     class CartControllerTests
     {
+        private Customer customer;
+        private CustomerRepository customerRepository;
+        private CartController controller;
+
+        [SetUp]
+        public void Setup()
+        {
+            customer = new Customer("John Smith");
+            customerRepository = new CustomerRepository();
+            customerRepository.Add(customer);
+            var builder = new TestControllerBuilder();
+            controller = builder.CreateController<CartController>(customerRepository);
+            controller.Session["CurrentUser"] = "John Smith";
+        }
+
         [Test]
         public void ShouldredirectToHomePageWhenAMovieIsAdded()
         {
-            var controller = new CartController(new Customer("John Smith"));
-
             RedirectResult result = controller.RentMovie("Avatar");
             Assert.That(result.Url, Is.EqualTo("/"));
         }
@@ -24,8 +38,6 @@ namespace UnitTests.Controllers
         [Test]
         public void ShouldAddMovieToCart()
         {
-            var customer = new Customer("John Smith");
-            var controller = new CartController(customer);
             controller.RentMovie("Avatar");
             List<Rental> rentals = customer.Cart.Rentals;
             Assert.That(rentals.Any(r => r.Movie.Title == "Avatar"));
@@ -34,8 +46,6 @@ namespace UnitTests.Controllers
         [Test]
         public void ShouldCreateRentalForOneDay()
         {
-            var customer = new Customer("John Smith");
-            var controller = new CartController(customer);
             controller.RentMovie("Avatar");
             List<Rental> rentals = customer.Cart.Rentals;
             Assert.That(rentals.First(r => r.Movie.Title == "Avatar").Period, Is.EqualTo(1));
@@ -45,8 +55,6 @@ namespace UnitTests.Controllers
         [Test]
         public void ShouldCountMultipleMovies()
         {
-            var customer = new Customer("John Smith");
-            var controller = new CartController(customer);
             controller.RentMovie("Avatar");
             Assert.That(customer.Cart.Count, Is.EqualTo(1));
             controller.RentMovie("Waterworld");
@@ -56,8 +64,6 @@ namespace UnitTests.Controllers
         [Test]
         public void IndexShouldShowCurrentCart()
         {
-            var customer = new Customer("John Smith");
-            var controller = new CartController(customer);
             ViewResult result = controller.Index();
             Assert.That(result.Model, Is.SameAs(customer.Cart));
         }

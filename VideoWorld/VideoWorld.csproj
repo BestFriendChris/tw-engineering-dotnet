@@ -78,6 +78,7 @@
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\ChildrensPrice.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerRepository.cs" />
     <Compile Include="Models\HomePageModel.cs" />
     <Compile Include="Models\IPrice.cs" />
     <Compile Include="Models\Movie.cs" />

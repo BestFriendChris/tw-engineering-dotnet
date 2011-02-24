@@ -28,5 +28,10 @@ namespace VideoWorld.Models
         {
             rentals.Add(new Rental(movie, 1));
         }
+
+        public void Clear()
+        {
+            rentals.Clear();
+        }
     }
 }

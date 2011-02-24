@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using MvcContrib.TestHelper;
 using NUnit.Framework;
 using VideoWorld.Controllers;
 using VideoWorld.Models;
@@ -8,14 +9,19 @@ namespace UnitTests.Controllers
 {
     public class HomePageControllerTests
     {
-        private Customer customer;
         private HomePageController controller;
+        private CustomerRepository customerRepository;
+        private Customer customer;
 
         [SetUp]
         public void SetUp()
         {
-            customer = new Customer("John Smith");
-            controller = new HomePageController(customer);
+            var builder = new TestControllerBuilder();
+            customerRepository = new CustomerRepository();
+            customer = new Customer("Test Customer");
+            customerRepository.Add(customer);
+            controller = builder.CreateController<HomePageController>(customerRepository);
+            controller.Session["CurrentUser"] = customer.Name;
         }
 
         [Test]

@@ -25,7 +25,7 @@ namespace VideoWorld.Models
             get { return  cart; }
         }
 
-        protected string Name { get; private set; }
+        public string Name { get; private set; }
 
         public string Statement(List<Rental> newRentals)
         {

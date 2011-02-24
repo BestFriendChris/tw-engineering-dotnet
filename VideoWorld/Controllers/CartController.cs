@@ -6,16 +6,17 @@ namespace VideoWorld.Controllers
 {
     public class CartController : Controller
     {
-        private readonly Customer customer;
+        private readonly CustomerRepository customerRepository;
 
-        public CartController(Customer customer)
+        public CartController(CustomerRepository customerRepository)
         {
-            this.customer = customer;
+            this.customerRepository = customerRepository;
         }
 
         [AcceptVerbs(HttpVerbs.Post), ActionName("Index")]
         public RedirectResult RentMovie(string title)
         {
+            var customer = FindCustomer();
             customer.Cart.AddMovie(new Movie(title, new RegularPrice()));
             return Redirect("/");
         }
@@ -23,7 +24,13 @@ namespace VideoWorld.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ViewResult Index()
         {
+            Customer customer = FindCustomer();
             return View("Index", customer.Cart);
+        }
+
+        private Customer FindCustomer()
+        {
+            return customerRepository.FindByName((string)Session["CurrentUser"]);
         }
     }
 }

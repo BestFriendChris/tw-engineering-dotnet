@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using MvcContrib.TestHelper;
 using NUnit.Framework;
 using VideoWorld.Controllers;
 using VideoWorld.Models;
@@ -10,16 +11,21 @@ namespace UnitTests.Controllers
 {
     class StatementControllerTest
     {
-        private Customer customer;
+        private CustomerRepository customerRepository;
         private StatementRepository repository;
         private StatementsController controller;
+        private Customer customer;
 
         [SetUp]
         public void SetUp()
         {
-            customer = new Customer();
+            customerRepository = new CustomerRepository();
+            customer = new Customer("Test customer");
+            customerRepository.Add(customer);
             repository = new StatementRepository();
-            controller = new StatementsController(repository, customer);
+            var builder = new TestControllerBuilder();
+            controller = builder.CreateController<StatementsController>(repository, customerRepository);
+            controller.Session["CurrentUser"] = "Test customer";
         }
 
         [Test]
@@ -41,6 +47,15 @@ namespace UnitTests.Controllers
         {
             controller.Create();
             Assert.That(repository.FindById(0).Text, Contains.Substring("Amount charged is"));
+        }
+
+        [Test]
+        public void ShouldClearCartOnCheckout()
+        {
+            customer.Cart.AddMovie(new Movie("Mad Max 2", new NewReleasePrice()));
+            Assert.That(customer.Cart.Count, Is.EqualTo(1));
+            controller.Create();
+            Assert.That(customer.Cart.Count, Is.EqualTo(0));
         }
 
         [Test]

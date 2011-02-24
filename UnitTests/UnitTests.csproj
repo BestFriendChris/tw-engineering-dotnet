@@ -34,8 +34,8 @@
     <Reference Include="Moq">
       <HintPath>..\lib\test\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="MvcFakes">
-      <HintPath>..\lib\test\MvcFakes.dll</HintPath>
+    <Reference Include="MvcContrib.TestHelper">
+      <HintPath>..\lib\test\MvcContrib.TestHelper.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\lib\test\nunit.framework.dll</HintPath>

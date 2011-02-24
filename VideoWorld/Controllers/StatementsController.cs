@@ -6,32 +6,39 @@ namespace VideoWorld.Controllers
 {
     public class StatementsController : Controller
     {
-        private readonly StatementRepository repository;
-        private readonly Customer customer;
+        private readonly StatementRepository statementRepository;
+        private readonly CustomerRepository customerRepository;
 
-        public StatementsController(StatementRepository repository, Customer customer)
+        public StatementsController(StatementRepository statementRepository, CustomerRepository customerRepository)
         {
-            this.repository = repository;
-            this.customer = customer;
+            this.statementRepository = statementRepository;
+            this.customerRepository = customerRepository;
         }
 
         [AcceptVerbs(HttpVerbs.Post), ActionName("Index")]
         public RedirectResult Create()
         {
+            Customer customer = FindCustomer();
             var statement = new Statement(customer);
-            int id = repository.Add(statement);
+            int id = statementRepository.Add(statement);
+            customer.Cart.Clear();
             return Redirect("/statements/" + id);
+        }
+
+        private Customer FindCustomer()
+        {
+            return customerRepository.FindByName((string)Session["CurrentUser"]);
         }
 
         public ViewResult Show(int id)
         {
-            var statement = repository.FindById(id);
+            var statement = statementRepository.FindById(id);
             return View("Show", statement);
         }
 
         public ViewResult Index()
         {
-            return View("Index", repository.FindByCustomer(customer));
+            return View("Index", statementRepository.FindByCustomer(FindCustomer()));
         }
     }
 }

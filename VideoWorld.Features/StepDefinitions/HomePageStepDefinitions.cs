@@ -48,7 +48,7 @@ namespace VideoWorld.Features.StepDefinitions
         {
             var textField = WebDriver.FindElement(By.TagName("input"), e => e.GetAttribute("name") == "username");
             Assert.IsNotNull(textField);
-            textField.SendKeys(username);
+            textField.SendKeys(username + " " + new Random().NextDouble());
 
             var button = WebDriver.FindElement(By.TagName("input"), e => e.GetAttribute("name") == "login");
             Assert.IsNotNull(button);
@@ -60,6 +60,7 @@ namespace VideoWorld.Features.StepDefinitions
         [Given(@"I am logged in as ""(.*)""")]
         public void GivenIAmLoggedInAs(string username)
         {
+            WhenILogout();
             WhenINavigateToTheLoginPage();
             WhenLoginAs(username);
         }
@@ -195,7 +196,8 @@ namespace VideoWorld.Features.StepDefinitions
         public void ThenIShouldSee1HistoryItem()
         {
             var elements = WebDriver.FindElements(By.ClassName("statement"));
-            Assert.That(elements.Count, Is.EqualTo(1));
+            Assert.That(elements.Count, Is.EqualTo(1), WebDriver.PageSource);
+            
         }
     }
 

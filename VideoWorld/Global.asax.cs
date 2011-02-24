@@ -53,7 +53,7 @@ namespace VideoWorld
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
 
-            kernel.Bind<Customer>().To(typeof(Customer)).InSessionScope();
+            kernel.Bind<CustomerRepository>().To(typeof(CustomerRepository)).InSingletonScope();
             kernel.Bind<StatementRepository>().To(typeof(StatementRepository)).InSingletonScope();
 
             return kernel;

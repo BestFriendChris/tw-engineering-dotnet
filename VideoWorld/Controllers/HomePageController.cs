@@ -7,11 +7,11 @@ namespace VideoWorld.Controllers
 {
     public class HomePageController : Controller
     {
-        private readonly Customer customer;
+        private readonly CustomerRepository customers;
 
-        public HomePageController(Customer customer)
+        public HomePageController(CustomerRepository customers)
         {
-            this.customer = customer;
+            this.customers = customers;
         }
 
         public ViewResult Index()
@@ -19,7 +19,9 @@ namespace VideoWorld.Controllers
             var movieRepo = new MovieRepository();
             List<Movie> movies = movieRepo.FindAllMovies();
 
-            return View("Index", new HomePageModel(movies, customer));
+            string customerName = (string) Session["CurrentUser"];
+
+            return View("Index", new HomePageModel(movies, customers.FindByName(customerName)));
         }
     }
 }
