@@ -15,3 +15,9 @@ Scenario: Logging in
 	When I navigate to the login page
 	And login as "Fred"
 	Then the system shows me the home page
+
+@web
+Scenario: Logging off
+	Given I am logged in as "Fred"
+	When I logout
+	Then the system shows me the login page

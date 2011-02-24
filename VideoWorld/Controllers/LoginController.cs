@@ -17,5 +17,11 @@ namespace VideoWorld.Controllers
             Session["CurrentUser"] = username;
             return Redirect("/");
         }
+
+        public RedirectResult Logoff()
+        {
+            Session.Remove("CurrentUser");
+            return Redirect("/login");
+        }
     }
 }

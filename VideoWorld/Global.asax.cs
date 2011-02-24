@@ -30,8 +30,14 @@ namespace VideoWorld
             
             routes.MapRoute(
                 "Statements", // Route name
-                "{controller}/{id}", // URL with parameters
+                "statements/{id}", // URL with parameters
                 new { controller = "Statements", action = "Show"} // Parameter defaults
+            );
+
+            routes.MapRoute(
+                "Logoff", // Route name
+                "logoff", // URL with parameters
+                new {controller = "Login", action = "Logoff"}
             );
 
             routes.MapRoute(

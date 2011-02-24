@@ -92,6 +92,25 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Logging off")]
+        [NUnit.Framework.CategoryAttribute("web")]
+        public virtual void LoggingOff()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Logging off", new string[] {
+                        "web"});
+#line 20
+this.ScenarioSetup(scenarioInfo);
+#line 21
+ testRunner.Given("I am logged in as \"Fred\"");
+#line 22
+ testRunner.When("I logout");
+#line 23
+ testRunner.Then("the system shows me the login page");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

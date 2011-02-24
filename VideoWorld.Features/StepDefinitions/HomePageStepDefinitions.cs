@@ -15,6 +15,15 @@ namespace VideoWorld.Features.StepDefinitions
     {
         private const string RootUrl = "http://localhost:49785";
 
+        [When(@"I logout")]
+        public void WhenILogout()
+        {
+            var element = WebDriver.FindElement(By.TagName("a"), e => e.Text == "Log off");
+            Assert.IsNotNull(element);
+            element.Click();
+        }
+
+
         [Given(@"I am not logged in")]
         public void GivenIAmNotLoggedIn()
         {
