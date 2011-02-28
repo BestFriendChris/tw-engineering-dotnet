@@ -10,11 +10,13 @@
    @Model.Cart.Count item(s) in your cart.
 </div>
 
-<div class="movies">
+<table class="movies">
 @foreach (var item in Model.Movies) {    
-    <div class="movie">
-        <span class="title">@item.Title</span>
-        <form method="post" action="/cart"><input type="submit" class="addToCart" name="addToCart" value="Add"/><input type="hidden" name="title" value="@item.Title"/></form>
-    </div>
+    <tr class="movie">
+        <td class="title">@item.Title</td>
+        <td>
+            <form method="post" action="/cart"><input type="submit" class="addToCart" name="addToCart" value="Add"/><input type="hidden" name="title" value="@item.Title"/></form>
+        </td>
+    </tr>
 }
-</div>
+</table>

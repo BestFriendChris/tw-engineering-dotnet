@@ -33,15 +33,14 @@ namespace VideoWorld.Features.StepDefinitions
         [Then(@"the system shows me the login page")]
         public void ThenTheSystemShowsMeTheLoginPage()
         {
-            var element = WebDriver.FindElement(By.TagName("h2"), e => e.Text == "Login");
-            Assert.IsNotNull(element);
+            WebDriver.WaitForElement(By.TagName("h2"), e => e.Text == "Login");
         }
 
         [When(@"I navigate to the login page")]
         public void WhenINavigateToTheLoginPage()
         {
             WebDriver.Navigate().GoToUrl(RootUrl + "/login");
-            WebDriver.WaitForElement(By.TagName("h2"), e => e.Text == "Login");
+            ThenTheSystemShowsMeTheLoginPage();
         }
 
         [When(@"login as ""(.*)""")]

@@ -6,14 +6,14 @@
 
 <h2>Your Shopping Cart</h2>
 
-<div class="rentals">
+<table class="rentals">
 @foreach (var item in Model.Rentals) {    
-    <div class="rental">
-        <span class="title">@item.Movie.Title</span>
-        <span class="period">@item.Period</span>
-    </div>
+    <tr class="rental">
+        <td class="title">@item.Movie.Title</td>
+        <td class="period">@item.Period</td>
+    </tr>
 }
-</div>
+</table>
 
 <div class="checkout_form">
     <form method="post" action="/statements">
