@@ -45,5 +45,6 @@ namespace UnitTests.Models
 
             Assert.AreEqual(expected, customer.Statement(mixedRentals));
         }
+
     }
 }

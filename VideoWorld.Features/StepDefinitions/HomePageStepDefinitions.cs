@@ -115,6 +115,27 @@ namespace VideoWorld.Features.StepDefinitions
             WebDriver.WaitForElement(By.ClassName("cart"));
         }
 
+        [Given(@"I have added the movie ""(.*)"" with a period of (.*) days")]
+        public void GivenIHaveAddedTheMovieAvatarWithAPeriodOf2Days(string movieName, int numberOfDays)
+        {
+            var element = WebDriver.FindElement(By.ClassName("movie"), e => e.Text.Contains(movieName));
+            Assert.IsNotNull(element);
+
+            var periodElement = element.FindElements(By.TagName("select")).Where(e => e.GetAttribute("name").Equals("numberOfDays")).FirstOrDefault();
+            Assert.IsNotNull(periodElement);
+
+            var option = periodElement.FindElements(By.TagName("option")).Where(e => e.Value.Equals(numberOfDays.ToString())).FirstOrDefault();
+            option.Select();
+
+            var addButton = element.FindElement(By.ClassName("addToCart"));
+            Assert.IsNotNull(addButton);
+
+            addButton.Click();
+
+            //Note: waiting for the page to reload after the movie is added
+            WebDriver.WaitForElement(By.ClassName("cart"));
+        }
+
         [Then(@"I see ""(.*) item in your cart""")]
         public void ThenISee1ItemInYourCart(int numberOfMovies)
         {
@@ -154,7 +175,7 @@ namespace VideoWorld.Features.StepDefinitions
         {
             var element = WebDriver.FindElement(By.ClassName("rental"), e => e.Text.Contains(movieName));
             var periodelement = element.FindElement(By.ClassName("period"));
-            Assert.That(periodelement.Text, Is.EqualTo("1"));
+            Assert.That(periodelement.Text, Is.EqualTo(periodInDays.ToString()));
         }
 
         [When(@"I check out")]

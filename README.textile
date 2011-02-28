@@ -49,3 +49,15 @@ Take a look at MovieTests, there is a Law of Demeter violation :
 This chould be refactored to look like this:
 
 	Assert.AreEqual(1, RegularMovieInstance.GetFrequentRenterPoints(1));
+
+h3. Customer and its Tests
+
+CustomerTests has some really badly named tests:
+
+        public void NonEmpty()
+        public void Empty()
+
+This is a good place to discuss DDD :-D
+
+Note that the statement does not contain the number of days for a rental. 
+This is in the original version of the code but is probably a Bad Thing.

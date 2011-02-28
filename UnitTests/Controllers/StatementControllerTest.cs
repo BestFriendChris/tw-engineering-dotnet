@@ -52,7 +52,7 @@ namespace UnitTests.Controllers
         [Test]
         public void ShouldClearCartOnCheckout()
         {
-            customer.Cart.AddMovie(new Movie("Mad Max 2", new NewReleasePrice()));
+            customer.Cart.AddMovie(new Movie("Mad Max 2", new NewReleasePrice()), 1);
             Assert.That(customer.Cart.Count, Is.EqualTo(1));
             controller.Create();
             Assert.That(customer.Cart.Count, Is.EqualTo(0));

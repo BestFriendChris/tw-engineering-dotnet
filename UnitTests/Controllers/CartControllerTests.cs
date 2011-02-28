@@ -31,14 +31,14 @@ namespace UnitTests.Controllers
         [Test]
         public void ShouldredirectToHomePageWhenAMovieIsAdded()
         {
-            RedirectResult result = controller.RentMovie("Avatar");
+            RedirectResult result = controller.RentMovie("Avatar", 1);
             Assert.That(result.Url, Is.EqualTo("/"));
         }
 
         [Test]
         public void ShouldAddMovieToCart()
         {
-            controller.RentMovie("Avatar");
+            controller.RentMovie("Avatar", 1);
             List<Rental> rentals = customer.Cart.Rentals;
             Assert.That(rentals.Any(r => r.Movie.Title == "Avatar"));
         }
@@ -46,18 +46,26 @@ namespace UnitTests.Controllers
         [Test]
         public void ShouldCreateRentalForOneDay()
         {
-            controller.RentMovie("Avatar");
+            controller.RentMovie("Avatar", 1);
             List<Rental> rentals = customer.Cart.Rentals;
             Assert.That(rentals.First(r => r.Movie.Title == "Avatar").Period, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ShouldCreateRentalForMultipleDays()
+        {
+            controller.RentMovie("Avatar", 2);
+            List<Rental> rentals = customer.Cart.Rentals;
+            Assert.That(rentals.First(r => r.Movie.Title == "Avatar").Period, Is.EqualTo(2));
         }
 
 
         [Test]
         public void ShouldCountMultipleMovies()
         {
-            controller.RentMovie("Avatar");
+            controller.RentMovie("Avatar", 1);
             Assert.That(customer.Cart.Count, Is.EqualTo(1));
-            controller.RentMovie("Waterworld");
+            controller.RentMovie("Waterworld", 1);
             Assert.That(customer.Cart.Count, Is.EqualTo(2));
         }
 

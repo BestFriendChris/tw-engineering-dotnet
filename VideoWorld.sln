@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D91D69EF-6A43-4647-8558-C949E5DA3050}"
 	ProjectSection(SolutionItems) = preProject
 		README.textile = README.textile
+		start-selenium-remote.bat = start-selenium-remote.bat
 	EndProjectSection
 EndProject
 Global

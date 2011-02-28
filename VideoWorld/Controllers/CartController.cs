@@ -14,10 +14,10 @@ namespace VideoWorld.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post), ActionName("Index")]
-        public RedirectResult RentMovie(string title)
+        public RedirectResult RentMovie(string title, int numberOfDays)
         {
             var customer = FindCustomer();
-            customer.Cart.AddMovie(new Movie(title, new RegularPrice()));
+            customer.Cart.AddMovie(new Movie(title, new RegularPrice()), numberOfDays);
             return Redirect("/");
         }
 

@@ -64,11 +64,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.Given("I am logged in as \"Fred\"");
 #line 9
- testRunner.And("I have added the movie \"Avatar\"");
+ testRunner.And("I have added the movie \"Avatar\" with a period of 2 days");
 #line 10
  testRunner.When("I view my Cart");
 #line 11
- testRunner.Then("I should see the movie \"Avatar\" with a 1 day rental");
+ testRunner.Then("I should see the movie \"Avatar\" with a 2 day rental");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
