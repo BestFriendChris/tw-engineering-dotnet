@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using MvcContrib.TestHelper;
 using NUnit.Framework;
@@ -16,10 +17,11 @@ namespace UnitTests.Controllers
         [SetUp]
         public void SetUp()
         {
-            var builder = new TestControllerBuilder();
             customerRepository = new CustomerRepository();
             customer = new Customer("Test Customer");
             customerRepository.Add(customer);
+
+            var builder = new TestControllerBuilder();
             controller = builder.CreateController<HomePageController>(customerRepository);
             controller.Session["CurrentUser"] = customer.Name;
         }
@@ -36,8 +38,7 @@ namespace UnitTests.Controllers
         {
             ViewResult result = controller.Index();
             var model = (HomePageModel) result.Model;
-            var movies = model.Movies;
-            Assert.That(movies.Count, Is.EqualTo(3));
+            Assert.That(model.Movies.Count, Is.EqualTo(3));
         }
 
         [Test]

@@ -41,6 +41,7 @@ namespace VideoWorld.Features.StepDefinitions
         public void WhenINavigateToTheLoginPage()
         {
             WebDriver.Navigate().GoToUrl(RootUrl + "/login");
+            WebDriver.WaitForElement(By.TagName("h2"), e => e.Text == "Login");
         }
 
         [When(@"login as ""(.*)""")]
