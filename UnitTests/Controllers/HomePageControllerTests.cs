@@ -18,12 +18,12 @@ namespace UnitTests.Controllers
         public void SetUp()
         {
             customerRepository = new CustomerRepository();
-            customer = new Customer("Test Customer");
+            customer = new Customer("Test Customer", null, null);
             customerRepository.Add(customer);
 
             var builder = new TestControllerBuilder();
             controller = builder.CreateController<HomePageController>(customerRepository);
-            controller.Session["CurrentUser"] = customer.Name;
+            controller.Session["CurrentUser"] = customer.DisplayName;
         }
 
         [Test]

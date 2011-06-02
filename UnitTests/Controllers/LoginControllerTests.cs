@@ -33,16 +33,17 @@ namespace UnitTests.Controllers
         [Test]
         public void ShouldredirectToHomePageWhenUserLogsIn()
         {
-            RedirectResult redirect = loginController.Login("username");
+            var redirect = (RedirectResult) loginController.Login("username");
             Assert.That(redirect.Url, Is.EqualTo("/"));
             Assert.That(loginController.Session["CurrentUser"], Is.EqualTo("username"));
         }
 
         [Test]
-        public void ShouldAddCustomerToRepostoryWhenUserLogsIn()
+        public void ShouldReturnLoginWhenProvidedNoCustomerName()
         {
-            var redirect = (RedirectResult)loginController.Login("username");
-            Assert.That(customerRepository.FindByName("username"), Is.Not.Null);
+            var actionResult = loginController.Login("");
+            actionResult.AssertViewRendered().ForView("Index");
+            Assert.That(loginController.TempData["errorMessage"], Is.EqualTo("Username is empty"));
         }
     }
 }

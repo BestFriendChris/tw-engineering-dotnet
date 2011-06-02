@@ -20,7 +20,7 @@ namespace VideoWorld.Models
 
         public void Add(Customer customer)
         {
-            this.customers.Add(customer.Name, customer);
+            this.customers.Add(customer.DisplayName, customer);
         }
     }
 }

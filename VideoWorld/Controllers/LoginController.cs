@@ -7,6 +7,7 @@ namespace VideoWorld.Controllers
 {
     public class LoginController : Controller
     {
+        private const string USERNAME_EMPTY_ERROR = "Username is empty";
         private CustomerRepository customerRepository;
 
         public LoginController(CustomerRepository repository)
@@ -20,12 +21,18 @@ namespace VideoWorld.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post), ActionName("Index")]
-        public RedirectResult Login(string username)
+        public ActionResult Login(string username)
         {
-            Customer customer = customerRepository.FindByName(username);
+            if (string.IsNullOrEmpty(username))
+            {
+                TempData["errorMessage"] = USERNAME_EMPTY_ERROR;
+                return Index();
+            }
+
+            var customer = customerRepository.FindByName(username);
             if (customer == null)
             {
-                customer = new Customer(username);
+                customer = new Customer(username, null, null);
                 customerRepository.Add(customer);
             }
 

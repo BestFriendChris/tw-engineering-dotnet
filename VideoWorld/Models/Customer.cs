@@ -9,15 +9,16 @@ namespace VideoWorld.Models
         private readonly Cart cart = new Cart();
         private int frequentRenterPoints = 0;
 
-        public Customer(string name)
+        public Customer(string displayName, string username, string password)
         {
-            Name = name;
+            Password = password;
+            DisplayName = displayName;
+            Username = username;
         }
 
         [Inject]
-        public Customer()
+        public Customer() : this ("Unknown Customer", null, null)
         {
-            Name = "Unknown Customer";
         }
 
         public Cart Cart
@@ -25,11 +26,13 @@ namespace VideoWorld.Models
             get { return  cart; }
         }
 
-        public string Name { get; private set; }
+        public string DisplayName { get; private set; }
+        public string Username { get; private set; }
+        private string Password { get; set; }
 
         public string Statement(List<Rental> newRentals)
         {
-            String result = "Rental Record for " + Name + "\n";
+            String result = "Rental Record for " + DisplayName + "\n";
 
             decimal totalAmount = 0.00m;
             foreach (Rental rental in newRentals)
@@ -51,5 +54,9 @@ namespace VideoWorld.Models
             return result;
         }
 
+        public bool isUsernameAndPasswordValid(string username, string password)
+        {
+            return Username.Equals(username) && Password.Equals(password);
+        }
     }
 }

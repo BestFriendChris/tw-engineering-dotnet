@@ -20,7 +20,7 @@ namespace UnitTests.Controllers
         public void SetUp()
         {
             customerRepository = new CustomerRepository();
-            customer = new Customer("Test customer");
+            customer = new Customer("Test customer", null, null);
             customerRepository.Add(customer);
             repository = new StatementRepository();
             var builder = new TestControllerBuilder();

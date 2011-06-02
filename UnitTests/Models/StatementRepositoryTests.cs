@@ -14,8 +14,8 @@ namespace UnitTests.Models
         {
             var repository = new StatementRepository();
 
-            var c1 = new Customer("One");
-            var c2 = new Customer("Two");
+            var c1 = new Customer("One", null, null);
+            var c2 = new Customer("Two", null, null);
 
             var statement = new Statement(c1);
             repository.Add(statement);

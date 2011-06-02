@@ -6,10 +6,33 @@ namespace UnitTests.Models
 {
     internal class CustomerTests
     {
+        private Customer customer;
+        private List<Rental> mixedRentals;
+
+        [SetUp]
+        public void SetUp()
+        {
+            customer = new Customer("John Smith", "jsmith", "password");
+
+            var montyPython = new Movie("Monty Python and the Holy Grail", new RegularPrice());
+            var ran = new Movie("Ran", new RegularPrice());
+            var laConfidential = new Movie("LA Confidential", new NewReleasePrice());
+            var starTrek = new Movie("Star Trek 13.2", new NewReleasePrice());
+            var wallaceAndGromit = new Movie("Wallace and Gromit", new ChildrensPrice());
+
+            mixedRentals = new List<Rental>
+                               {
+                                   new Rental(montyPython, 3),
+                                   new Rental(ran, 1),
+                                   new Rental(laConfidential, 2),
+                                   new Rental(starTrek, 1),
+                                   new Rental(wallaceAndGromit, 6)
+                               };
+        }
+
         [Test]
         public void Empty()
         {
-            var customer = new Customer("John Smith");
             const string noRentalsStatement = "Rental Record for John Smith\n"
                                               + "Amount charged is $0.00\n"
                                               + "You have a new total of 0 frequent renter points";
@@ -28,23 +51,17 @@ namespace UnitTests.Models
                                     + "Amount charged is $20.50\n"
                                     + "You have a new total of 6 frequent renter points";
 
-            var customer = new Customer("John Smith");
-
-            var montyPython = new Movie("Monty Python and the Holy Grail", new RegularPrice());
-            var ran = new Movie("Ran", new RegularPrice());
-            var laConfidential = new Movie("LA Confidential", new NewReleasePrice());
-            var starTrek = new Movie("Star Trek 13.2", new NewReleasePrice());
-            var wallaceAndGromit = new Movie("Wallace and Gromit", new ChildrensPrice());
-
-            var mixedRentals = new List<Rental>();
-            mixedRentals.Add(new Rental(montyPython, 3));
-            mixedRentals.Add(new Rental(ran, 1));
-            mixedRentals.Add(new Rental(laConfidential, 2));
-            mixedRentals.Add(new Rental(starTrek, 1));
-            mixedRentals.Add(new Rental(wallaceAndGromit, 6));
-
             Assert.AreEqual(expected, customer.Statement(mixedRentals));
         }
+
+        [Test]
+        public void TestPasswordValidated()
+        {
+            Assert.False(customer.isUsernameAndPasswordValid("jsmith","incorrect"));
+            Assert.False(customer.isUsernameAndPasswordValid("incorrect","password"));
+            Assert.True(customer.isUsernameAndPasswordValid("jsmith","password"));
+        }
+
 
     }
 }
