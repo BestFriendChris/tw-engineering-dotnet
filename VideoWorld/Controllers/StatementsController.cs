@@ -29,7 +29,7 @@ namespace VideoWorld.Controllers
         private Customer FindCustomer()
         {
             var currentUsername = (string) Session["CurrentUser"];
-            return customerRepository.SelectUnique(customer => customer.Username.Equals(currentUsername));
+            return customerRepository.SelectUnique(CustomerSpecification.ByUserName(currentUsername));
         }
 
         public ViewResult Show(int id)

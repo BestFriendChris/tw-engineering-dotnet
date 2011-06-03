@@ -41,7 +41,7 @@ namespace VideoWorld.Controllers
                 return LoginView(loginViewModel);
             }
 
-            var customer = customerRepository.SelectUnique(cust => cust.isUsernameAndPasswordValid(username, password) );
+            var customer = customerRepository.SelectUnique(CustomerSpecification.ByUserNameAndPassword(username, password) );
 
             if (customer == null)
             {

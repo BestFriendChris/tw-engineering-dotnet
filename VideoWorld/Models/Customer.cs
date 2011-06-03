@@ -38,7 +38,7 @@ namespace VideoWorld.Models
             foreach (Rental rental in newRentals)
             {
                 // show figures for this rental
-                int rentalDays = rental.Period;
+                int rentalDays = rental.Period.Duration;
 
                 result += "  " + rental.Movie.Title + "  -  $"
                           + rental.Movie.Price.GetCharge(rentalDays) + "\n";
@@ -54,7 +54,7 @@ namespace VideoWorld.Models
             return result;
         }
 
-        public bool isUsernameAndPasswordValid(string username, string password)
+        public bool IsUsernameAndPasswordValid(string username, string password)
         {
             return Username.Equals(username) && Password.Equals(password);
         }

@@ -22,7 +22,7 @@ namespace VideoWorld.Controllers
 
             var currentUsername = (string) Session["CurrentUser"];
 
-            return View("Index", new HomePageModel(movies, customers.SelectUnique(customer => customer.Username.Equals(currentUsername))));
+            return View("Index", new HomePageModel(movies, customers.SelectUnique(CustomerSpecification.ByUserName(currentUsername))));
         }
     }
 }

@@ -49,7 +49,7 @@ namespace UnitTests.Controllers
         {
             controller.RentMovie("Avatar", 1);
             List<Rental> rentals = customer.Cart.Rentals;
-            Assert.That(rentals.First(r => r.Movie.Title == "Avatar").Period, Is.EqualTo(1));
+            Assert.That(rentals.First(r => r.Movie.Title == "Avatar").Period.Duration, Is.EqualTo(1));
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace UnitTests.Controllers
         {
             controller.RentMovie("Avatar", 2);
             List<Rental> rentals = customer.Cart.Rentals;
-            Assert.That(rentals.First(r => r.Movie.Title == "Avatar").Period, Is.EqualTo(2));
+            Assert.That(rentals.First(r => r.Movie.Title == "Avatar").Period.Duration, Is.EqualTo(2));
         }
 
 

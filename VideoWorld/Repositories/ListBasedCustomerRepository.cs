@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using VideoWorld.Models;
+﻿using VideoWorld.Models;
 
 namespace VideoWorld.Repositories
 {
@@ -7,7 +6,7 @@ namespace VideoWorld.Repositories
     {
         public bool ContainsUsername(string username)
         {
-            return SelectSatisfying(customer => customer.Username.Equals(username)).Count > 0;
+            return SelectSatisfying(CustomerSpecification.ByUserName(username)).Count > 0;
         }
     }
 }

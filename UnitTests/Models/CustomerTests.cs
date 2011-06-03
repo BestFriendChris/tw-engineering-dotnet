@@ -22,11 +22,11 @@ namespace UnitTests.Models
 
             mixedRentals = new List<Rental>
                                {
-                                   new Rental(montyPython, 3),
-                                   new Rental(ran, 1),
-                                   new Rental(laConfidential, 2),
-                                   new Rental(starTrek, 1),
-                                   new Rental(wallaceAndGromit, 6)
+                                   new Rental(montyPython, new Period(3)),
+                                   new Rental(ran, new Period(1)),
+                                   new Rental(laConfidential, new Period(2)),
+                                   new Rental(starTrek, new Period(1)),
+                                   new Rental(wallaceAndGromit, new Period(6))
                                };
         }
 
@@ -57,9 +57,9 @@ namespace UnitTests.Models
         [Test]
         public void TestPasswordValidated()
         {
-            Assert.False(customer.isUsernameAndPasswordValid("jsmith","incorrect"));
-            Assert.False(customer.isUsernameAndPasswordValid("incorrect","password"));
-            Assert.True(customer.isUsernameAndPasswordValid("jsmith","password"));
+            Assert.False(customer.IsUsernameAndPasswordValid("jsmith","incorrect"));
+            Assert.False(customer.IsUsernameAndPasswordValid("incorrect","password"));
+            Assert.True(customer.IsUsernameAndPasswordValid("jsmith","password"));
         }
 
 

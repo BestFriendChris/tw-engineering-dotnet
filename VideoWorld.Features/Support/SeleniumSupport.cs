@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Configuration;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Remote;
 using TechTalk.SpecFlow;
 

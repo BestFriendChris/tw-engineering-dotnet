@@ -18,8 +18,9 @@ namespace VideoWorld.Controllers
         public RedirectResult RentMovie(string title, int numberOfDays)
         {
             var customer = FindCustomer();
-            customer.Cart.AddMovie(new Movie(title, new RegularPrice()), numberOfDays);
+            customer.Cart.AddMovie(new Movie(title, new RegularPrice()), new Period(numberOfDays));
             return Redirect("/");
+
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -32,7 +33,7 @@ namespace VideoWorld.Controllers
         private Customer FindCustomer()
         {
             var currentUsername = (string)Session["CurrentUser"];
-            return customerRepository.SelectUnique((customer => customer.Username.Equals(currentUsername)));
+            return customerRepository.SelectUnique(CustomerSpecification.ByUserName(currentUsername));
         }
     }
 }

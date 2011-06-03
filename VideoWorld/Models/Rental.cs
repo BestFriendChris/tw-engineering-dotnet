@@ -5,13 +5,14 @@ namespace VideoWorld.Models
     public class Rental 
     {
         private readonly Movie movie;
-        private readonly int periodInDays;
+        private readonly Period periodInDays;
 
-        public Rental(Movie movie, int periodInDays)
+        public Rental(Movie movie, Period periodInDays)
         {
             this.movie = movie;
             this.periodInDays = periodInDays;
         }
+
 
         public Movie Movie
         {
@@ -20,7 +21,7 @@ namespace VideoWorld.Models
             }
         }
 
-        public int Period
+        public Period Period
         {
             get { return periodInDays; }
         }
