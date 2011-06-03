@@ -43,12 +43,15 @@ namespace VideoWorld.Features.StepDefinitions
             ThenTheSystemShowsMeTheLoginPage();
         }
 
-        [When(@"login as ""(.*)""")]
-        public void WhenLoginAs(string username)
+        [When(@"login as ""(.*)"" with ""(.*)""")]
+        public void WhenLoginAs(string username, string password)
         {
-            var textField = WebDriver.FindElement(By.TagName("input"), e => e.GetAttribute("name") == "username");
-            Assert.IsNotNull(textField);
-            textField.SendKeys(username + " " + new Random().NextDouble());
+            var usernameTextField = WebDriver.FindElement(By.TagName("input"), e => e.GetAttribute("name") == "username");
+            Assert.IsNotNull(usernameTextField);
+            usernameTextField.SendKeys(username);
+            var passwordTextField = WebDriver.FindElement(By.TagName("input"), e => e.GetAttribute("name") == "password");
+            Assert.IsNotNull(passwordTextField);
+            passwordTextField.SendKeys(password);
 
             var button = WebDriver.FindElement(By.TagName("input"), e => e.GetAttribute("name") == "login");
             Assert.IsNotNull(button);
@@ -57,12 +60,12 @@ namespace VideoWorld.Features.StepDefinitions
             WebDriver.WaitForElement(By.ClassName("movies"));
         }
 
-        [Given(@"I am logged in as ""(.*)""")]
-        public void GivenIAmLoggedInAs(string username)
+        [Given(@"I am logged in as ""(.*)"" with ""(.*)""")]
+        public void GivenIAmLoggedInAs(string username, string password)
         {
             WhenILogout();
             WhenINavigateToTheLoginPage();
-            WhenLoginAs(username);
+            WhenLoginAs(username, password);
         }
 
         [Then(@"the system shows me the home page")]

@@ -13,11 +13,11 @@ Scenario: Not logged in
 Scenario: Logging in
 	Given I am not logged in
 	When I navigate to the login page
-	And login as "Fred"
+	And login as "jmadison" with "jm-password" 
 	Then the system shows me the home page
 
 @web
 Scenario: Logging off
-	Given I am logged in as "Fred"
+	Given I am logged in as "jmadison" with "jm-password" 
 	When I logout
 	Then the system shows me the login page
