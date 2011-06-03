@@ -14,7 +14,7 @@ namespace VideoWorld.Repositories
             objects = new List<T>();
         }
 
-        public ListBasedRepository(Collection<T> entities)
+        public ListBasedRepository(IEnumerable<T> entities)
         {
             objects = new List<T>(entities);
         }
@@ -28,7 +28,7 @@ namespace VideoWorld.Repositories
             objects.Add(entity);
         }
 
-        public void Add(Collection<T> entities)
+        public void Add(IList<T> entities)
         {
             if (entities == null)
             {
@@ -66,7 +66,7 @@ namespace VideoWorld.Repositories
         
         public T SelectUnique(Specification<T> specification)  {
             var results = SelectSatisfyingIntoCollection(specification);
-            return results.Single();
+            return results.SingleOrDefault();
         }
         
         private List<T> SelectSatisfyingIntoCollection(Specification<T> specification) 

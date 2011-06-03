@@ -5,25 +5,26 @@ using MvcContrib.TestHelper;
 using NUnit.Framework;
 using VideoWorld.Controllers;
 using VideoWorld.Models;
+using VideoWorld.Repositories;
 
 namespace UnitTests.Controllers
 {
     public class HomePageControllerTests
     {
         private HomePageController controller;
-        private CustomerRepository customerRepository;
+        private ICustomerRepository customerRepository;
         private Customer customer;
 
         [SetUp]
         public void SetUp()
         {
-            customerRepository = new CustomerRepository();
-            customer = new Customer("Test Customer", null, null);
+            customerRepository = new ListBasedCustomerRepository();
+            customer = new Customer("Test Customer", "test", "password");
             customerRepository.Add(customer);
 
             var builder = new TestControllerBuilder();
             controller = builder.CreateController<HomePageController>(customerRepository);
-            controller.Session["CurrentUser"] = customer.DisplayName;
+            controller.Session["CurrentUser"] = customer.Username;
         }
 
         [Test]

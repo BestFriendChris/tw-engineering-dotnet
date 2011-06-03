@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Web.Mvc;
 using VideoWorld.Models;
+using VideoWorld.Repositories;
 
 namespace VideoWorld.Controllers
 {
     public class CartController : Controller
     {
-        private readonly CustomerRepository customerRepository;
+        private readonly ICustomerRepository customerRepository;
 
-        public CartController(CustomerRepository customerRepository)
+        public CartController(ICustomerRepository customerRepository)
         {
             this.customerRepository = customerRepository;
         }
@@ -30,7 +31,8 @@ namespace VideoWorld.Controllers
 
         private Customer FindCustomer()
         {
-            return customerRepository.FindByName((string)Session["CurrentUser"]);
+            var currentUsername = (string)Session["CurrentUser"];
+            return customerRepository.SelectUnique((customer => customer.Username.Equals(currentUsername)));
         }
     }
 }

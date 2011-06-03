@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Web.Mvc;
 using VideoWorld.Models;
+using VideoWorld.Repositories;
 
 namespace VideoWorld.Controllers
 {
     public class StatementsController : Controller
     {
         private readonly StatementRepository statementRepository;
-        private readonly CustomerRepository customerRepository;
+        private readonly ICustomerRepository customerRepository;
 
-        public StatementsController(StatementRepository statementRepository, CustomerRepository customerRepository)
+        public StatementsController(StatementRepository statementRepository, ICustomerRepository customerRepository)
         {
             this.statementRepository = statementRepository;
             this.customerRepository = customerRepository;
@@ -27,7 +28,8 @@ namespace VideoWorld.Controllers
 
         private Customer FindCustomer()
         {
-            return customerRepository.FindByName((string)Session["CurrentUser"]);
+            var currentUsername = (string) Session["CurrentUser"];
+            return customerRepository.SelectUnique(customer => customer.Username.Equals(currentUsername));
         }
 
         public ViewResult Show(int id)

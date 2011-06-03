@@ -7,18 +7,21 @@ using MvcContrib.TestHelper;
 using NUnit.Framework;
 using VideoWorld.Controllers;
 using VideoWorld.Models;
+using VideoWorld.Repositories;
+using VideoWorld.ViewModels;
 
 namespace UnitTests.Controllers
 {
     class LoginControllerTests
     {
         private LoginController loginController;
-        private CustomerRepository customerRepository;
+        private ICustomerRepository customerRepository;
 
         [SetUp]
         public void SetUp()
         {
-            customerRepository = new CustomerRepository();
+            customerRepository = new ListBasedCustomerRepository();
+            customerRepository.Add(new Customer("Test Customer","username","password"));
             var builder = new TestControllerBuilder();
             loginController = builder.CreateController<LoginController>(customerRepository);
         }
@@ -33,7 +36,7 @@ namespace UnitTests.Controllers
         [Test]
         public void ShouldredirectToHomePageWhenUserLogsIn()
         {
-            var redirect = (RedirectResult) loginController.Login("username");
+            var redirect = (RedirectResult) loginController.Login("username", "password");
             Assert.That(redirect.Url, Is.EqualTo("/"));
             Assert.That(loginController.Session["CurrentUser"], Is.EqualTo("username"));
         }
@@ -41,9 +44,10 @@ namespace UnitTests.Controllers
         [Test]
         public void ShouldReturnLoginWhenProvidedNoCustomerName()
         {
-            var actionResult = loginController.Login("");
+            var actionResult = loginController.Login("","") as ViewResult;
             actionResult.AssertViewRendered().ForView("Index");
-            Assert.That(loginController.TempData["errorMessage"], Is.EqualTo("Username is empty"));
+            var viewModel = actionResult.Model as LoginViewModel;
+            Assert.That(viewModel.ErrorMessage, Is.EqualTo("Username cannot be empty"));
         }
     }
 }

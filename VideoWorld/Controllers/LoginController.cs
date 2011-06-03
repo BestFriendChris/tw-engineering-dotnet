@@ -2,38 +2,55 @@
 using System.Web.Mvc;
 using System.Web.SessionState;
 using VideoWorld.Models;
+using VideoWorld.Repositories;
+using VideoWorld.ViewModels;
 
 namespace VideoWorld.Controllers
 {
     public class LoginController : Controller
     {
-        private const string USERNAME_EMPTY_ERROR = "Username is empty";
-        private CustomerRepository customerRepository;
+        private const string USERNAME_EMPTY_ERROR = "Username cannot be empty";
+        private const string INVALID_USERNAME_PASSWORD_ERROR = "Invalid username/password";
+        private ICustomerRepository customerRepository;
 
-        public LoginController(CustomerRepository repository)
+        public LoginController(ICustomerRepository repository)
         {
             customerRepository = repository;
         }
 
         public ViewResult Index()
         {
-            return View("Index");
+            return LoginView(new LoginViewModel());
+        }
+
+        private ViewResult LoginView(LoginViewModel model)
+        {
+            return View("Index", model);
         }
 
         [AcceptVerbs(HttpVerbs.Post), ActionName("Index")]
-        public ActionResult Login(string username)
+        public ActionResult Login(string username, string password)
         {
             if (string.IsNullOrEmpty(username))
             {
-                TempData["errorMessage"] = USERNAME_EMPTY_ERROR;
-                return Index();
+                var loginViewModel = new LoginViewModel
+                                         {
+                                             Username = username,
+                                             ErrorMessage = USERNAME_EMPTY_ERROR
+                                         };
+                return LoginView(loginViewModel);
             }
 
-            var customer = customerRepository.FindByName(username);
+            var customer = customerRepository.SelectUnique(cust => cust.isUsernameAndPasswordValid(username, password) );
+
             if (customer == null)
             {
-                customer = new Customer(username, null, null);
-                customerRepository.Add(customer);
+                var loginViewModel = new LoginViewModel
+                                         {
+                                             Username = username,
+                                             ErrorMessage = INVALID_USERNAME_PASSWORD_ERROR
+                                         };
+                return LoginView(loginViewModel);
             }
 
             customer.Cart.Clear();

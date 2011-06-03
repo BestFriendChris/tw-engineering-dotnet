@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using VideoWorld.Models;
+using VideoWorld.Repositories;
 
 namespace VideoWorld.Controllers
 {
     public class HomePageController : Controller
     {
-        private readonly CustomerRepository customers;
+        private readonly ICustomerRepository customers;
 
-        public HomePageController(CustomerRepository customers)
+        public HomePageController(ICustomerRepository customers)
         {
             this.customers = customers;
         }
@@ -19,9 +20,9 @@ namespace VideoWorld.Controllers
             var movieRepo = new MovieRepository();
             List<Movie> movies = movieRepo.FindAllMovies();
 
-            string customerName = (string) Session["CurrentUser"];
+            var currentUsername = (string) Session["CurrentUser"];
 
-            return View("Index", new HomePageModel(movies, customers.FindByName(customerName)));
+            return View("Index", new HomePageModel(movies, customers.SelectUnique(customer => customer.Username.Equals(currentUsername))));
         }
     }
 }

@@ -1,10 +1,13 @@
-﻿@{
+﻿@model VideoWorld.ViewModels.LoginViewModel
+
+@{
     ViewBag.Title = "Index";
 }
 
 <h2>Login</h2>
-<p>@TempData["errorMessage"]</p>
+<p>@Model.ErrorMessage</p>
 <form method="post" action="/login">
-    <input type="text" name="username" value="" />
-    <input type="submit" name="login" value="Login" />
+    <div> Username: <input type="text" name="username" value="@Model.Username"/></div>
+    <div> Password: <input type="password" name="password" value="@Model.Password" /></div>
+    <div><input type="submit" name="login" value="Login" /></div>
 </form>

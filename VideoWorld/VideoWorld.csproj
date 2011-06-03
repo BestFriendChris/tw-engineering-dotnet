@@ -78,7 +78,6 @@
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\ChildrensPrice.cs" />
     <Compile Include="Models\Customer.cs" />
-    <Compile Include="Models\CustomerRepository.cs" />
     <Compile Include="Models\HomePageModel.cs" />
     <Compile Include="Models\IPrice.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -93,6 +92,7 @@
     <Compile Include="Repositories\ListBasedCustomerRepository.cs" />
     <Compile Include="Repositories\ListBasedRepository.cs" />
     <Compile Include="Repositories\Specification.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />

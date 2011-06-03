@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using VideoWorld.Models;
 
 namespace VideoWorld.Repositories
@@ -8,15 +7,15 @@ namespace VideoWorld.Repositories
     {
         void Add(Customer entity);
 
-        void Add(Collection<Customer> entities);
+        void Add(IList<Customer> entities);
 
-        IList<Customer> SelectAll();
+        List<Customer> SelectAll();
 
-        IList<Customer> SelectAll(Comparer<Customer> orderBy);
+        List<Customer> SelectAll(Comparer<Customer> orderBy);
 
-        IList<Customer> SelectSatisfying(Specification<Customer> specification);
+        List<Customer> SelectSatisfying(Specification<Customer> specification);
 
-        IList<Customer> SelectSatisfying(Specification<Customer> specification, Comparer<Customer> comparator);
+        List<Customer> SelectSatisfying(Specification<Customer> specification, Comparer<Customer> comparator);
 
         Customer SelectUnique(Specification<Customer> specification);
 

@@ -10,6 +10,7 @@ using Ninject.Web.Mvc;
 using VideoWorld.Configuration;
 using VideoWorld.Controllers;
 using VideoWorld.Models;
+using VideoWorld.Repositories;
 
 namespace VideoWorld
 {
@@ -27,25 +28,24 @@ namespace VideoWorld
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            
+
             routes.MapRoute(
                 "Statements", // Route name
                 "statements/{id}", // URL with parameters
-                new { controller = "Statements", action = "Show"} // Parameter defaults
-            );
+                new {controller = "Statements", action = "Show"} // Parameter defaults
+                );
 
             routes.MapRoute(
                 "Logoff", // Route name
                 "logoff", // URL with parameters
                 new {controller = "Login", action = "Logoff"}
-            );
+                );
 
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "HomePage", action = "Index", id = UrlParameter.Optional } // Parameter defaults
-            );
-
+                new {controller = "HomePage", action = "Index", id = UrlParameter.Optional} // Parameter defaults
+                );
         }
 
         protected override IKernel CreateKernel()
@@ -53,8 +53,15 @@ namespace VideoWorld
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
 
-            kernel.Bind<CustomerRepository>().To(typeof(CustomerRepository)).InSingletonScope();
-            kernel.Bind<StatementRepository>().To(typeof(StatementRepository)).InSingletonScope();
+            var customers = new List<Customer>
+                                {
+                                    new Customer("James Madison", "jmadison", "jm-password"),
+                                    new Customer("Zackery Taylor", "ztaylor", "zt-password"),
+                                    new Customer("Benjamin Harrison", "bharrison", "bh-password")
+                                };
+
+            kernel.Bind<ICustomerRepository>().To(typeof (ListBasedCustomerRepository)).InSingletonScope().OnActivation(repository => repository.Add(customers));
+            kernel.Bind<StatementRepository>().To(typeof (StatementRepository)).InSingletonScope();
 
             return kernel;
         }

@@ -8,24 +8,25 @@ using NUnit.Framework;
 using UnitTests.Models;
 using VideoWorld.Controllers;
 using VideoWorld.Models;
+using VideoWorld.Repositories;
 
 namespace UnitTests.Controllers
 {
     class CartControllerTests
     {
         private Customer customer;
-        private CustomerRepository customerRepository;
+        private ICustomerRepository customerRepository;
         private CartController controller;
 
         [SetUp]
         public void Setup()
         {
-            customer = new Customer("John Smith", null, null);
-            customerRepository = new CustomerRepository();
+            customer = new Customer("John Smith", "jsmith", "password");
+            customerRepository = new ListBasedCustomerRepository();
             customerRepository.Add(customer);
             var builder = new TestControllerBuilder();
             controller = builder.CreateController<CartController>(customerRepository);
-            controller.Session["CurrentUser"] = "John Smith";
+            controller.Session["CurrentUser"] = customer.Username;
         }
 
         [Test]

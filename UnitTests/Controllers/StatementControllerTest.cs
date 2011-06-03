@@ -6,12 +6,13 @@ using MvcContrib.TestHelper;
 using NUnit.Framework;
 using VideoWorld.Controllers;
 using VideoWorld.Models;
+using VideoWorld.Repositories;
 
 namespace UnitTests.Controllers
 {
     class StatementControllerTest
     {
-        private CustomerRepository customerRepository;
+        private ICustomerRepository customerRepository;
         private StatementRepository repository;
         private StatementsController controller;
         private Customer customer;
@@ -19,13 +20,13 @@ namespace UnitTests.Controllers
         [SetUp]
         public void SetUp()
         {
-            customerRepository = new CustomerRepository();
-            customer = new Customer("Test customer", null, null);
+            customerRepository = new ListBasedCustomerRepository();
+            customer = new Customer("Test customer", "test", "password");
             customerRepository.Add(customer);
             repository = new StatementRepository();
             var builder = new TestControllerBuilder();
             controller = builder.CreateController<StatementsController>(repository, customerRepository);
-            controller.Session["CurrentUser"] = "Test customer";
+            controller.Session["CurrentUser"] = "test";
         }
 
         [Test]
