@@ -18,9 +18,8 @@ namespace VideoWorld.Controllers
         public RedirectResult RentMovie(string title, int numberOfDays)
         {
             var customer = FindCustomer();
-            customer.Cart.AddMovie(new Movie(title, new RegularPrice()), new Period(numberOfDays));
+            customer.Cart.AddMovie(new Movie(title, new RegularPrice()), new Period(numberOfDays), customer);
             return Redirect("/");
-
         }
 
         [AcceptVerbs(HttpVerbs.Get)]

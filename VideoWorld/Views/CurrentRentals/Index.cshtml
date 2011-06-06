@@ -1,0 +1,18 @@
+@model VideoWorld.ViewModels.CurrentRentalsModel
+
+@{
+    ViewBag.Title = "Current Rentals";
+}
+
+<h2>Current Rentals for @Model.CurrentCustomer.DisplayName</h2>
+
+<table class="rentals">
+@foreach (var item in Model.CurrentRentals) {    
+    <tr class="rental">
+        <td class="title">@item.Movie.Title</td>
+        <td class="period">@item.Period </td>
+    </tr>
+}
+</table>
+
+    

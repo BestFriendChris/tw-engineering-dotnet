@@ -22,7 +22,7 @@ namespace UnitTests.Controllers
         public void Setup()
         {
             customer = new Customer("John Smith", "jsmith", "password");
-            customerRepository = new ListBasedCustomerRepository();
+            customerRepository = new CustomerRepository();
             customerRepository.Add(customer);
             var builder = new TestControllerBuilder();
             controller = builder.CreateController<CartController>(customerRepository);

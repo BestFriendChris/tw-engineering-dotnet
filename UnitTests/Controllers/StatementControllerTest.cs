@@ -16,16 +16,18 @@ namespace UnitTests.Controllers
         private StatementRepository repository;
         private StatementsController controller;
         private Customer customer;
+        private RentalRepository rentalRepository;
 
         [SetUp]
         public void SetUp()
         {
-            customerRepository = new ListBasedCustomerRepository();
+            customerRepository = new CustomerRepository();
             customer = new Customer("Test customer", "test", "password");
             customerRepository.Add(customer);
             repository = new StatementRepository();
+            rentalRepository = new RentalRepository();
             var builder = new TestControllerBuilder();
-            controller = builder.CreateController<StatementsController>(repository, customerRepository);
+            controller = builder.CreateController<StatementsController>(repository, customerRepository,rentalRepository);
             controller.Session["CurrentUser"] = "test";
         }
 
@@ -53,7 +55,7 @@ namespace UnitTests.Controllers
         [Test]
         public void ShouldClearCartOnCheckout()
         {
-            customer.Cart.AddMovie(new Movie("Mad Max 2", new NewReleasePrice()), new Period(1));
+            customer.Cart.AddMovie(new Movie("Mad Max 2", new NewReleasePrice()), new Period(1),customer);
             Assert.That(customer.Cart.Count, Is.EqualTo(1));
             controller.Create();
             Assert.That(customer.Cart.Count, Is.EqualTo(0));

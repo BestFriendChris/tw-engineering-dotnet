@@ -22,11 +22,11 @@ namespace UnitTests.Models
 
             mixedRentals = new List<Rental>
                                {
-                                   new Rental(montyPython, new Period(3)),
-                                   new Rental(ran, new Period(1)),
-                                   new Rental(laConfidential, new Period(2)),
-                                   new Rental(starTrek, new Period(1)),
-                                   new Rental(wallaceAndGromit, new Period(6))
+                                   new Rental(montyPython, new Period(3), customer),
+                                   new Rental(ran, new Period(1),customer),
+                                   new Rental(laConfidential, new Period(2),customer),
+                                   new Rental(starTrek, new Period(1),customer),
+                                   new Rental(wallaceAndGromit, new Period(6),customer)
                                };
         }
 

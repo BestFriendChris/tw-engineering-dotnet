@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace VideoWorld.Repositories
 {
-    public class ListBasedRepository<T> where T : class
+    public class ListBasedRepository<T> : IRepository<T>
     {
         private readonly List<T> objects;
 

@@ -18,7 +18,7 @@ namespace UnitTests.Controllers
         [SetUp]
         public void SetUp()
         {
-            customerRepository = new ListBasedCustomerRepository();
+            customerRepository = new CustomerRepository();
             customer = new Customer("Test Customer", "test", "password");
             customerRepository.Add(customer);
 

@@ -18,4 +18,12 @@ namespace VideoWorld.Repositories
 
     }
 
+    public static class RentalSpecification
+    {
+        public static Specification<Rental> ByCustomer(Customer customer)
+        {
+            return rental => rental.Customer.Username.Equals(customer.Username);
+        }
+    }
+
 }

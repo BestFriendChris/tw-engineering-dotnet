@@ -9,11 +9,13 @@ namespace VideoWorld.Controllers
     {
         private readonly StatementRepository statementRepository;
         private readonly ICustomerRepository customerRepository;
+        private readonly IRentalRepository rentalRepository;
 
-        public StatementsController(StatementRepository statementRepository, ICustomerRepository customerRepository)
+        public StatementsController(StatementRepository statementRepository, ICustomerRepository customerRepository, IRentalRepository rentalRepository)
         {
             this.statementRepository = statementRepository;
             this.customerRepository = customerRepository;
+            this.rentalRepository = rentalRepository;
         }
 
         [AcceptVerbs(HttpVerbs.Post), ActionName("Index")]
@@ -22,6 +24,7 @@ namespace VideoWorld.Controllers
             Customer customer = FindCustomer();
             var statement = new Statement(customer);
             int id = statementRepository.Add(statement);
+            rentalRepository.Add(customer.Cart.Rentals);
             customer.Cart.Clear();
             return Redirect("/statements/" + id);
         }

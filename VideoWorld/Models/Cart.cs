@@ -24,9 +24,9 @@ namespace VideoWorld.Models
             }
         }
 
-        public void AddMovie(Movie movie, Period periodInDays)
+        public void AddMovie(Movie movie, Period periodInDays, Customer customer)
         {
-            rentals.Add(new Rental(movie, periodInDays));
+            rentals.Add(new Rental(movie, periodInDays,customer));
         }
 
         public void Clear()

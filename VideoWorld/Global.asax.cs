@@ -60,8 +60,9 @@ namespace VideoWorld
                                     new Customer("Benjamin Harrison", "bharrison", "bh-password")
                                 };
 
-            kernel.Bind<ICustomerRepository>().To(typeof (ListBasedCustomerRepository)).InSingletonScope().OnActivation(repository => repository.Add(customers));
+            kernel.Bind<ICustomerRepository>().To(typeof (CustomerRepository)).InSingletonScope().OnActivation(repository => repository.Add(customers));
             kernel.Bind<StatementRepository>().To(typeof (StatementRepository)).InSingletonScope();
+            kernel.Bind<IRentalRepository>().To(typeof (RentalRepository)).InSingletonScope();
 
             return kernel;
         }

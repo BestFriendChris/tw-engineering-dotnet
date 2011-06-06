@@ -2,7 +2,7 @@
 
 namespace VideoWorld.Repositories
 {
-    public class ListBasedCustomerRepository : ListBasedRepository<Customer>, ICustomerRepository
+    public class CustomerRepository : ListBasedRepository<Customer>, ICustomerRepository
     {
         public bool ContainsUsername(string username)
         {

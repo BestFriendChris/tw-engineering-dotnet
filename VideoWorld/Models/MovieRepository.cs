@@ -4,6 +4,7 @@ namespace VideoWorld.Models
 {
     public class MovieRepository
     {
+
         public List<Movie> FindAllMovies()
         {
             return new List<Movie>()
