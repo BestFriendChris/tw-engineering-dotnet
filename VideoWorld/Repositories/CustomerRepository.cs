@@ -1,4 +1,5 @@
-﻿using VideoWorld.Models;
+﻿using System.Collections.Generic;
+using VideoWorld.Models;
 
 namespace VideoWorld.Repositories
 {
@@ -8,5 +9,6 @@ namespace VideoWorld.Repositories
         {
             return SelectSatisfying(CustomerSpecification.ByUserName(username)).Count > 0;
         }
+
     }
 }

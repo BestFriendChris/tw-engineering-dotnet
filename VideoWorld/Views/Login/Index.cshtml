@@ -11,3 +11,13 @@
     <div> Password: <input type="password" name="password" value="@Model.Password" /></div>
     <div><input type="submit" name="login" value="Login" /></div>
 </form>
+<div id="existing-users">
+        <p>Current valid users:</p>
+        <ul>
+            @foreach (var customer in Model.AllCustomers)
+            {
+                <li>@customer.Username</li>
+            }
+        </ul>
+        <p>Password is: {initials}-password (e.g: "zt-password")</p>
+</div>

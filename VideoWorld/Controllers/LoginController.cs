@@ -20,7 +20,7 @@ namespace VideoWorld.Controllers
 
         public ViewResult Index()
         {
-            return LoginView(new LoginViewModel());
+            return LoginView(new LoginViewModel { AllCustomers = customerRepository.SelectAll()});
         }
 
         private ViewResult LoginView(LoginViewModel model)
