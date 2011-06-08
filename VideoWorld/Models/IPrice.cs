@@ -2,7 +2,7 @@
 {
     public interface IPrice
     {
-        decimal GetCharge(int periodInDays);
+        decimal GetCharge(int daysRented);
         int GetFrequentRenterPoints(int daysRented);
     }
 }

@@ -3,7 +3,7 @@ using VideoWorld.Models;
 
 namespace UnitTests.Models
 {
-    class RegularPriceTest
+    public class RegularPriceTest
     {
         private static readonly IPrice RegularPriceInstance = new RegularPrice();
 

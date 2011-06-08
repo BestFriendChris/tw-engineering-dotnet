@@ -38,7 +38,7 @@ namespace VideoWorld.Models
             foreach (Rental rental in newRentals)
             {
                 // show figures for this rental
-                int rentalDays = rental.Period.Duration;
+                int rentalDays = rental.Period.Duration.Days;
 
                 result += "  " + rental.Movie.Title + "  -  $"
                           + rental.Movie.Price.GetCharge(rentalDays) + "\n";

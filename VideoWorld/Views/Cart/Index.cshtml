@@ -10,13 +10,13 @@
 @foreach (var item in Model.Rentals) {    
     <tr class="rental">
         <td class="title">@item.Movie.Title</td>
-        <td class="period">@item.Period </td>
+        <td class="period">@item.Period.Duration </td>
     </tr>
 }
 </table>
 
 <div class="checkout_form">
-    <form method="post" action="/statements">
+    <form method="post" action="/checkout">
         <input type="submit" name="checkout" class="checkout" value="Checkout" />
     </form>
 </div>

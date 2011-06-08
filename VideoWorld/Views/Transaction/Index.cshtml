@@ -1,0 +1,23 @@
+﻿@model IEnumerable<VideoWorld.Models.Transaction>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Transaction History</h2>
+
+<div class="transactions">
+@foreach (var transaction in Model) {
+    <div class="transaction">
+        <p>Transaction on @transaction.DateTime.ToShortDateString()</p>
+        <p>Movies Rented:</p>
+        <div class="rentals"></div>
+            @foreach (var rental in transaction.Rentals)
+            {
+                <div class="rental">
+                    @rental.Movie.Title
+                </div>
+            }
+    </div>
+}
+</div>

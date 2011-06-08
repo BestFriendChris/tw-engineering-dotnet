@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using VideoWorld.Models;
 using VideoWorld.Repositories;
 using VideoWorld.ViewModels;
+using System.Linq;
 
 namespace VideoWorld.Controllers
 {
@@ -28,9 +30,14 @@ namespace VideoWorld.Controllers
             var currentRentalsModel = new CurrentRentalsModel
                                           {
                                               CurrentCustomer = GetCurrentCustomer(),
-                                              CurrentRentals = rentalRepository.RentalForCustomer(GetCurrentCustomer())
+                                              CurrentRentals = GetCurrentRentals()
                                           };
             return currentRentalsModel;
+        }
+
+        private List<Rental> GetCurrentRentals()
+        {
+            return rentalRepository.RentalsFor(GetCurrentCustomer());
         }
 
         private Customer GetCurrentCustomer()

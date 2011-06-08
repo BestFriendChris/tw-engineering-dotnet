@@ -30,12 +30,6 @@ namespace VideoWorld
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "Statements", // Route name
-                "statements/{id}", // URL with parameters
-                new {controller = "Statements", action = "Show"} // Parameter defaults
-                );
-
-            routes.MapRoute(
                 "Logoff", // Route name
                 "logoff", // URL with parameters
                 new {controller = "Login", action = "Logoff"}
@@ -61,7 +55,7 @@ namespace VideoWorld
                                 };
 
             kernel.Bind<ICustomerRepository>().To(typeof (CustomerRepository)).InSingletonScope().OnActivation(repository => repository.Add(customers));
-            kernel.Bind<StatementRepository>().To(typeof (StatementRepository)).InSingletonScope();
+            kernel.Bind<TransactionRepository>().To(typeof (TransactionRepository)).InSingletonScope();
             kernel.Bind<IRentalRepository>().To(typeof (RentalRepository)).InSingletonScope();
 
             return kernel;

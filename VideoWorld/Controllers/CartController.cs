@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using VideoWorld.Models;
 using VideoWorld.Repositories;
+using VideoWorld.Utils;
 
 namespace VideoWorld.Controllers
 {
@@ -18,7 +19,9 @@ namespace VideoWorld.Controllers
         public RedirectResult RentMovie(string title, int numberOfDays)
         {
             var customer = FindCustomer();
-            customer.Cart.AddMovie(new Movie(title, new RegularPrice()), new Period(numberOfDays), customer);
+            Period periodInDays = Period.Of(DateTime.Now, new Duration(numberOfDays));
+            var movie = new Movie(title, new RegularPrice());
+            customer.Cart.AddMovie(movie, periodInDays, customer);
             return Redirect("/");
         }
 

@@ -1,4 +1,5 @@
-﻿using VideoWorld.Models;
+﻿using System;
+using VideoWorld.Models;
 
 namespace VideoWorld.Repositories
 {
@@ -22,7 +23,7 @@ namespace VideoWorld.Repositories
     {
         public static Specification<Rental> ByCustomer(Customer customer)
         {
-            return rental => rental.Customer.Username.Equals(customer.Username);
+            return rental => (rental.Customer.Username.Equals(customer.Username));
         }
     }
 

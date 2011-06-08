@@ -178,7 +178,7 @@ namespace VideoWorld.Features.StepDefinitions
         {
             var element = WebDriver.FindElement(By.ClassName("rental"), e => e.Text.Contains(movieName));
             var periodelement = element.FindElement(By.ClassName("period"));
-            Assert.That(periodelement.Text, Is.EqualTo(periodInDays.ToString()));
+            Assert.That(periodelement.Text, Is.EqualTo(periodInDays + " days"));
         }
 
         [When(@"I check out")]
@@ -188,14 +188,14 @@ namespace VideoWorld.Features.StepDefinitions
             var element = WebDriver.FindElement(By.ClassName("checkout"));
             element.Click();
 
-            WebDriver.WaitForElement(By.ClassName("statement"));
+            WebDriver.WaitForElement(By.ClassName("transaction"));
         }
 
         [Then(@"I should see my statement")]
         public void ThenIShouldSeeMyStatement()
         {
-            var statementElement = WebDriver.FindElement(By.ClassName("statement"));
-            Assert.That(statementElement.Text.Contains("Amount charged"));
+            var transactionElement = WebDriver.FindElement(By.ClassName("transaction"));
+            Assert.That(transactionElement.Text.Contains("Amount charged"));
         }
 
         [Given(@"I have rented the movie ""(.*)""")]
@@ -213,13 +213,13 @@ namespace VideoWorld.Features.StepDefinitions
             Assert.IsNotNull(element);
             element.Click();
 
-            WebDriver.WaitForElement(By.ClassName("statements"));
+            WebDriver.WaitForElement(By.ClassName("transactions"));
         }
 
         [Then(@"I should see 1 history item")]
         public void ThenIShouldSee1HistoryItem()
         {
-            var elements = WebDriver.FindElements(By.ClassName("statement"));
+            var elements = WebDriver.FindElements(By.ClassName("transaction"));
             Assert.That(elements.Count, Is.EqualTo(1), WebDriver.PageSource);
             
         }

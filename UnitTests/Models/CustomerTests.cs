@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using VideoWorld.Models;
+using VideoWorld.Utils;
 
 namespace UnitTests.Models
 {
@@ -8,6 +10,7 @@ namespace UnitTests.Models
     {
         private Customer customer;
         private List<Rental> mixedRentals;
+        private DateTime startDate;
 
         [SetUp]
         public void SetUp()
@@ -20,13 +23,14 @@ namespace UnitTests.Models
             var starTrek = new Movie("Star Trek 13.2", new NewReleasePrice());
             var wallaceAndGromit = new Movie("Wallace and Gromit", new ChildrensPrice());
 
+            startDate = DateTime.Now;
             mixedRentals = new List<Rental>
                                {
-                                   new Rental(montyPython, new Period(3), customer),
-                                   new Rental(ran, new Period(1),customer),
-                                   new Rental(laConfidential, new Period(2),customer),
-                                   new Rental(starTrek, new Period(1),customer),
-                                   new Rental(wallaceAndGromit, new Period(6),customer)
+                                   new Rental(montyPython, Period.Of(startDate, Duration.OfDays(3)) , customer),
+                                   new Rental(ran, Period.Of(startDate, Duration.OfDays(1)),customer),
+                                   new Rental(laConfidential, Period.Of(startDate, Duration.OfDays(2)),customer),
+                                   new Rental(starTrek, Period.Of(startDate, Duration.OfDays(1)),customer),
+                                   new Rental(wallaceAndGromit, Period.Of(startDate, Duration.OfDays(6)),customer)
                                };
         }
 

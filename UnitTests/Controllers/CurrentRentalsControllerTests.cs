@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MvcContrib.TestHelper;
 using NUnit.Framework;
 using VideoWorld.Controllers;
 using VideoWorld.Models;
 using VideoWorld.Repositories;
+using VideoWorld.Utils;
 using VideoWorld.ViewModels;
 
 namespace UnitTests.Controllers
@@ -37,7 +39,7 @@ namespace UnitTests.Controllers
 
         private Rental GetRental(string movieTitle, int duration)
         {
-            return new Rental(new Movie(movieTitle, new NewReleasePrice()), new Period(duration), this.customer);
+            return new Rental(new Movie(movieTitle, new NewReleasePrice()), Period.Of(DateTime.Now, Duration.OfDays(duration)), this.customer);
         }
 
         [Test]

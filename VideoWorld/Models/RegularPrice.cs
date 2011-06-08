@@ -2,11 +2,11 @@
 {
     public class RegularPrice : IPrice
     {
-        public decimal GetCharge(int periodInDays)
+        public decimal GetCharge(int daysRented)
         {
             decimal result = 2.00m;
-            if (periodInDays > 2)
-                result += (periodInDays - 2) * 1.50m;
+            if (daysRented > 2)
+                result += (daysRented - 2) * 1.50m;
             return result;
         }
 

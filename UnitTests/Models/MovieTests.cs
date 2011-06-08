@@ -3,6 +3,7 @@ using VideoWorld.Models;
 
 namespace UnitTests.Models
 {
+    [TestFixture]
     public class MovieTests
     {
         [TestCase(null)]

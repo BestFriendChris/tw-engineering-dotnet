@@ -2,9 +2,9 @@
 {
     public class NewReleasePrice : IPrice
     {
-        public decimal GetCharge(int periodInDays)
+        public decimal GetCharge(int daysRented)
         {
-            return periodInDays*3.00m;
+            return daysRented*3.00m;
         }
 
         public int GetFrequentRenterPoints(int daysRented)

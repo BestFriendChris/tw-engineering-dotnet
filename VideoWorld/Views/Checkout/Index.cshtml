@@ -1,0 +1,15 @@
+@model VideoWorld.ViewModels.StatementViewModel
+
+@{
+    ViewBag.Title = "View Transaction Statement";
+}
+
+<h2>Statement for @Model.Customer.DisplayName</h2>
+
+<div class="transaction">
+<pre>
+@Model.Statement        
+</pre>
+</div>
+
+

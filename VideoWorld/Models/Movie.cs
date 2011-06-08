@@ -8,6 +8,10 @@ namespace VideoWorld.Models
 
         public IPrice Price { get; set; }
 
+        public static IPrice CHILDRENS = new ChildrensPrice();
+        public static IPrice REGULAR = new RegularPrice();
+        public static IPrice NEW_RELEASE = new NewReleasePrice();
+
         public Movie(string title, IPrice price)
         {
             Price = price;

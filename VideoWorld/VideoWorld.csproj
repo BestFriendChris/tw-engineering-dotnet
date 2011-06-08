@@ -68,28 +68,30 @@
   <ItemGroup>
     <Compile Include="Configuration\NinjectSessionScopingExtension.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\CurrentRentalsController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Controllers\KnownUsersAuthorizationFilter.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\StatementsController.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\ChildrensPrice.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Utils\Duration.cs" />
     <Compile Include="Models\HomePageModel.cs" />
     <Compile Include="Models\IPrice.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieRepository.cs" />
     <Compile Include="Models\NewReleasePrice.cs" />
-    <Compile Include="Models\Period.cs" />
+    <Compile Include="Utils\Period.cs" />
     <Compile Include="Models\RegularPrice.cs" />
     <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\RentalRepository.cs" />
-    <Compile Include="Models\Statement.cs" />
-    <Compile Include="Models\StatementRepository.cs" />
+    <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ICustomerRepository.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="Repositories\Specification.cs" />
     <Compile Include="ViewModels\CurrentRentalsModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\StatementViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -118,10 +121,10 @@
     <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <None Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Statements\Index.cshtml" />
+    <Content Include="Views\Transaction\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\CurrentRentals\Index.cshtml" />
-    <None Include="Views\Statements\Show.cshtml" />
+    <None Include="Views\Checkout\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
