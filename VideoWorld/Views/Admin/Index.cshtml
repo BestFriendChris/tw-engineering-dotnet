@@ -1,0 +1,16 @@
+@model List<VideoWorld.Models.Customer>
+
+@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>Customers</h2>
+@foreach(var customer in Model) {
+    <ul>
+        <li>
+            @customer.DisplayName  (@customer.Username)
+        </li>
+    </ul>
+    }
+
+    

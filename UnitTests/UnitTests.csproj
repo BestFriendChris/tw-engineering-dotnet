@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AdminControllerTests.cs" />
     <Compile Include="Controllers\CartControllerTests.cs" />
     <Compile Include="Controllers\CheckoutControllerTests.cs" />
     <Compile Include="Controllers\CurrentRentalsControllerTests.cs" />
