@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using MvcContrib.TestHelper;
 using NUnit.Framework;
@@ -14,6 +13,7 @@ namespace UnitTests.Controllers
         private HomePageController controller;
         private ICustomerRepository customerRepository;
         private Customer customer;
+        private MovieRepository movieRepository;
 
         [SetUp]
         public void SetUp()
@@ -22,8 +22,16 @@ namespace UnitTests.Controllers
             customer = new Customer("Test Customer", "test", "password");
             customerRepository.Add(customer);
 
+            movieRepository = new MovieRepository();
+            var movies = new List<Movie>
+                             {
+                                 new Movie("Avatar", new NewReleasePrice()),
+                                 new Movie("Up In The Air", new RegularPrice())
+                             };
+            movieRepository.Add(movies);
+            
             var builder = new TestControllerBuilder();
-            controller = builder.CreateController<HomePageController>(customerRepository);
+            controller = builder.CreateController<HomePageController>(customerRepository, movieRepository);
             controller.Session["CurrentUser"] = customer.Username;
         }
 
@@ -39,7 +47,7 @@ namespace UnitTests.Controllers
         {
             ViewResult result = controller.Index();
             var model = (HomePageModel) result.Model;
-            Assert.That(model.Movies.Count, Is.EqualTo(3));
+            Assert.That(model.Movies.Count, Is.EqualTo(2));
         }
 
         [Test]

@@ -8,21 +8,22 @@ namespace VideoWorld.Controllers
 {
     public class HomePageController : Controller
     {
-        private readonly ICustomerRepository customers;
+        private readonly ICustomerRepository customerRepository;
+        private readonly IMovieRepository movieRepository;
 
-        public HomePageController(ICustomerRepository customers)
+        public HomePageController(ICustomerRepository customerRepository, IMovieRepository movieRepository)
         {
-            this.customers = customers;
+            this.customerRepository = customerRepository;
+            this.movieRepository = movieRepository;
         }
 
         public ViewResult Index()
         {
-            var movieRepo = new MovieRepository();
-            List<Movie> movies = movieRepo.FindAllMovies();
+            var movies = movieRepository.SelectAll();
 
             var currentUsername = (string) Session["CurrentUser"];
 
-            return View("Index", new HomePageModel(movies, customers.SelectUnique(CustomerSpecification.ByUserName(currentUsername))));
+            return View("Index", new HomePageModel(movies, customerRepository.SelectUnique(CustomerSpecification.ByUserName(currentUsername))));
         }
     }
 }

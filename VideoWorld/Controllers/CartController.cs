@@ -9,10 +9,12 @@ namespace VideoWorld.Controllers
     public class CartController : Controller
     {
         private readonly ICustomerRepository customerRepository;
+        private readonly IMovieRepository movieRepository;
 
-        public CartController(ICustomerRepository customerRepository)
+        public CartController(ICustomerRepository customerRepository, IMovieRepository movieRepository)
         {
             this.customerRepository = customerRepository;
+            this.movieRepository = movieRepository;
         }
 
         [AcceptVerbs(HttpVerbs.Post), ActionName("Index")]
@@ -20,7 +22,7 @@ namespace VideoWorld.Controllers
         {
             var customer = FindCustomer();
             Period periodInDays = Period.Of(DateTime.Now, new Duration(numberOfDays));
-            var movie = new Movie(title, new RegularPrice());
+            var movie = movieRepository.ByTitle(title);
             customer.Cart.AddMovie(movie, periodInDays, customer);
             return Redirect("/");
         }

@@ -6,7 +6,7 @@ namespace VideoWorld.Utils
     public class Duration
     {
         private const int INFINITE = Int32.MaxValue;
-        private int days;
+        private readonly int days;
 
         public int Days
         {
@@ -42,7 +42,7 @@ namespace VideoWorld.Utils
             {
                 return "infinite";
             }
-            return string.Format("{0} {1}", days, days == 1 ? "day" : "days");
+            return days.ToString();
         }
 
         public bool Equals(Duration other)

@@ -11,19 +11,26 @@
 </div>
 
 <table class="movies">
+<tr>
+    <th>Title</th>
+    <th>Price Code</th>
+    <th>Days</th>
+</tr>
 @foreach (var item in Model.Movies) {    
     <tr class="movie">
         <td class="title">@item.Title</td>
+        <td class="title">@item.Price.DisplayName</td>
         <td>
             <form method="post" action="/cart">
                 <input type="hidden" name="title" value="@item.Title"/>
+                <input type="hidden" name="priceCode" value="@item.Price" />
                 <select name="numberOfDays">
                     @for (int i = 1; i <= 7; i++)
                     {
-                    <option value="@i">@i @((i==1) ? "day" : "days")</option>
+                    <option value="@i">@i</option>
                     }
                 </select>
-                <input type="submit" class="addToCart" name="addToCart" value="Add"/>
+                <td><input type="submit" class="addToCart" name="addToCart" value="Add"/></td>
             </form>
         </td>
     </tr>

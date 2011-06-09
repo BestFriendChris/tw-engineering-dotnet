@@ -54,7 +54,15 @@ namespace VideoWorld
                                     new Customer("Benjamin Harrison", "bharrison", "bh-password")
                                 };
 
+            var movies = new List<Movie>
+                             {
+                                 new Movie("Avatar", Movie.NEW_RELEASE),
+                                 new Movie("Up in the Air", Movie.REGULAR),
+                                 new Movie("Finding Nemo", Movie.CHILDRENS)
+                             };
+
             kernel.Bind<ICustomerRepository>().To(typeof (CustomerRepository)).InSingletonScope().OnActivation(repository => repository.Add(customers));
+            kernel.Bind<IMovieRepository>().To(typeof (MovieRepository)).InSingletonScope().OnActivation(repository => repository.Add(movies));
             kernel.Bind<TransactionRepository>().To(typeof (TransactionRepository)).InSingletonScope();
             kernel.Bind<IRentalRepository>().To(typeof (RentalRepository)).InSingletonScope();
 

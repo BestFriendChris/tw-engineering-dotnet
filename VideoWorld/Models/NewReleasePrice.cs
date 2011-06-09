@@ -1,4 +1,6 @@
-﻿namespace VideoWorld.Models
+﻿using System;
+
+namespace VideoWorld.Models
 {
     public class NewReleasePrice : IPrice
     {
@@ -14,6 +16,11 @@
                 return 2;
             else
                 return 1;
+        }
+
+        public string DisplayName
+        {
+            get { return "New Release"; }
         }
     }
 }

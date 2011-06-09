@@ -4,5 +4,6 @@
     {
         decimal GetCharge(int daysRented);
         int GetFrequentRenterPoints(int daysRented);
+        string DisplayName { get; }
     }
 }

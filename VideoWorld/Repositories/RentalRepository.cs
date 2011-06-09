@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using VideoWorld.Repositories;
+using VideoWorld.Models;
 
-namespace VideoWorld.Models
+namespace VideoWorld.Repositories
 {
     public class RentalRepository : ListBasedRepository<Rental>, IRentalRepository
     {

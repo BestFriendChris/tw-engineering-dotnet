@@ -178,7 +178,7 @@ namespace VideoWorld.Features.StepDefinitions
         {
             var element = WebDriver.FindElement(By.ClassName("rental"), e => e.Text.Contains(movieName));
             var periodelement = element.FindElement(By.ClassName("period"));
-            Assert.That(periodelement.Text, Is.EqualTo(periodInDays + " days"));
+            Assert.That(periodelement.Text, Is.EqualTo(periodInDays));
         }
 
         [When(@"I check out")]

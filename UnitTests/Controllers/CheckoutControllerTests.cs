@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
-using Moq;
 using MvcContrib.TestHelper;
 using NUnit.Framework;
 using VideoWorld.Controllers;
@@ -62,19 +60,21 @@ namespace UnitTests.Controllers
         public void ShouldCreateTransactionWithSameCustomer()
         {
             controller.CheckOut();
-            Assert.That(transactionRepository.FindById(0).Customer, Is.SameAs(customer));
+            Assert.That(transactionRepository.SelectAll().First().Customer, Is.SameAs(customer));
         }
 
         [Test]
         public void ShouldRecordTransaction()
         {
             var topGun = new Movie("Top Gun", new RegularPrice());
-            Period rentalPeriod = Period.Of(DateTime.Now, Duration.OfDays(2));
+            var rentalPeriod = Period.Of(DateTime.Now, Duration.OfDays(2));
             customer.Cart.AddMovie(topGun, rentalPeriod, customer);
             controller.CheckOut();
-            Assert.That(transactionRepository.FindById(0).Rentals.Count, Is.EqualTo(1));
-            Assert.That(transactionRepository.FindById(0).Rentals.First().Movie, Is.EqualTo(topGun));
-            Assert.That(transactionRepository.FindById(0).Rentals.First().Period, Is.EqualTo(rentalPeriod));
+            
+            var rentalsFromFirstTransaction = transactionRepository.SelectAll().First().Rentals;
+            Assert.That(rentalsFromFirstTransaction.Count, Is.EqualTo(1));
+            Assert.That(rentalsFromFirstTransaction.First().Movie, Is.EqualTo(topGun));
+            Assert.That(rentalsFromFirstTransaction.First().Period, Is.EqualTo(rentalPeriod));
         }
 
         private void AddMovieToCart(string title, int rentedDays)

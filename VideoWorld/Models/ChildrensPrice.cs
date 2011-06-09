@@ -16,5 +16,10 @@ namespace VideoWorld.Models
         {
             return 1;
         }
+
+        public string DisplayName
+        {
+            get { return "Children's"; }
+        }
     }
 }

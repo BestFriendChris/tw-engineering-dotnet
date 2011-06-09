@@ -9,7 +9,7 @@ namespace VideoWorld.Repositories
     {
         public static Specification<Customer> ByUserName(string username)
         {
-            return customer => customer.Username.Equals(username);
+            return customer => customer.Username == username;
         } 
         
         public static Specification<Customer> ByUserNameAndPassword(string username, string password)
@@ -23,7 +23,23 @@ namespace VideoWorld.Repositories
     {
         public static Specification<Rental> ByCustomer(Customer customer)
         {
-            return rental => (rental.Customer.Username.Equals(customer.Username));
+            return rental => (rental.Customer.Username == customer.Username);
+        }
+    }
+
+    public static class TransactionSpecification
+    {
+        public static Specification<Transaction> ByCustomer(Customer customer)
+        {
+            return transaction => transaction.Customer.Equals(customer);
+        }
+    }
+
+    public static class MovieSpecification
+    {
+        public static Specification<Movie> ByTitle(string title)
+        {
+            return movie => movie.Title == title;
         }
     }
 
