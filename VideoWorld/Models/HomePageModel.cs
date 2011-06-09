@@ -7,12 +7,15 @@ namespace VideoWorld.Models
     {
         public HomePageModel(IEnumerable<Movie> movies, Customer customer)
         {
-            this.Movies = new List<Movie>(movies);
-            this.Cart = customer.Cart;
+            Movies = new List<Movie>(movies);
+            Cart = customer.Cart;
+            ShowAdminLink = customer.IsAdmin;
         }
 
         public List<Movie> Movies { get; private set; }
 
         public Cart Cart { get; private set; }
+
+        public bool ShowAdminLink { get; private set; }
     }
 }

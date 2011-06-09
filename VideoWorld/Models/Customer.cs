@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Ninject;
+using VideoWorld.Utils;
 
 namespace VideoWorld.Models
 {
@@ -9,26 +10,28 @@ namespace VideoWorld.Models
         private readonly Cart cart = new Cart();
         private int frequentRenterPoints = 0;
 
-        public Customer(string displayName, string username, string password)
-        {
-            Password = password;
-            DisplayName = displayName;
-            Username = username;
-        }
+        public string DisplayName { get; private set; }
+        public string Username { get; private set; }
+        private string Password { get; set; }
+
+        public Cart Cart { get { return cart; } }
+
+        public bool IsAdmin { get; private set; }
+
+        public Customer(string displayName, string username, string password) : this(displayName, username, password, false) { }
 
         [Inject]
         public Customer() : this ("Unknown Customer", null, null)
         {
         }
 
-        public Cart Cart
+        private Customer(string displayName, string username, string password, bool isAdmin)
         {
-            get { return  cart; }
+            Password = password;
+            IsAdmin = isAdmin;
+            DisplayName = displayName;
+            Username = username;
         }
-
-        public string DisplayName { get; private set; }
-        public string Username { get; private set; }
-        private string Password { get; set; }
 
         public string Statement(List<Rental> newRentals)
         {
@@ -57,6 +60,13 @@ namespace VideoWorld.Models
         public bool IsUsernameAndPasswordValid(string username, string password)
         {
             return Username.Equals(username) && Password.Equals(password);
+        }
+
+        public static Customer CreateAdminUser(string displayName, string username, string password)
+        {
+            if (!Feature.AdminAccount.IsEnabled())
+                throw new NotSupportedException("Admin account feature is not enabled");
+            return new Customer(displayName, username, password, true);
         }
     }
 }

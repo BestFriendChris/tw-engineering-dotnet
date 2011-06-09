@@ -44,6 +44,7 @@
       <HintPath>..\lib\test\nunit.mocks.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -61,9 +62,10 @@
     <Compile Include="Controllers\TransactionControllerTest.cs" />
     <Compile Include="Controllers\HomePageControllerTests.cs" />
     <Compile Include="Models\ChildrensPriceTest.cs" />
-    <Compile Include="Models\TransactionRepositoryTests.cs" />
+    <Compile Include="Repositories\CustomerRepositoryTests.cs" />
+    <Compile Include="Repositories\TransactionRepositoryTests.cs" />
     <Compile Include="Models\CustomerTests.cs" />
-    <Compile Include="Models\MovieRepositoryTests.cs" />
+    <Compile Include="Repositories\MovieRepositoryTests.cs" />
     <Compile Include="Models\MovieTests.cs" />
     <Compile Include="Models\NewReleasePriceTests.cs" />
     <Compile Include="Models\RegularPriceTest.cs" />

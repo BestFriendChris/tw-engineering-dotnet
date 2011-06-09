@@ -4,6 +4,11 @@
     ViewBag.Title = "Index";
 }
 
+@section adminLink {
+@if(Model.ShowAdminLink) {
+    <a href="/admin">Admin</a>
+}
+}
 <h2>Index</h2>
 
 <div class="cart">

@@ -11,7 +11,7 @@ namespace VideoWorld.Controllers
     {
         private const string USERNAME_EMPTY_ERROR = "Username cannot be empty";
         private const string INVALID_USERNAME_PASSWORD_ERROR = "Invalid username/password";
-        private ICustomerRepository customerRepository;
+        private readonly ICustomerRepository customerRepository;
 
         public LoginController(ICustomerRepository repository)
         {
@@ -20,7 +20,7 @@ namespace VideoWorld.Controllers
 
         public ViewResult Index()
         {
-            return LoginView(new LoginViewModel { AllCustomers = customerRepository.SelectAll()});
+            return LoginView(new LoginViewModel { AllCustomers = customerRepository.SelectAllInAlphabeticalOrder()});
         }
 
         private ViewResult LoginView(LoginViewModel model)
@@ -36,7 +36,8 @@ namespace VideoWorld.Controllers
                 var loginViewModel = new LoginViewModel
                                          {
                                              Username = username,
-                                             ErrorMessage = USERNAME_EMPTY_ERROR
+                                             ErrorMessage = USERNAME_EMPTY_ERROR,
+                                             AllCustomers = customerRepository.SelectAllInAlphabeticalOrder()
                                          };
                 return LoginView(loginViewModel);
             }
@@ -48,7 +49,8 @@ namespace VideoWorld.Controllers
                 var loginViewModel = new LoginViewModel
                                          {
                                              Username = username,
-                                             ErrorMessage = INVALID_USERNAME_PASSWORD_ERROR
+                                             ErrorMessage = INVALID_USERNAME_PASSWORD_ERROR,
+                                             AllCustomers = customerRepository.SelectAllInAlphabeticalOrder()
                                          };
                 return LoginView(loginViewModel);
             }

@@ -11,6 +11,7 @@ using VideoWorld.Configuration;
 using VideoWorld.Controllers;
 using VideoWorld.Models;
 using VideoWorld.Repositories;
+using VideoWorld.Utils;
 
 namespace VideoWorld
 {
@@ -53,6 +54,11 @@ namespace VideoWorld
                                     new Customer("Zackery Taylor", "ztaylor", "zt-password"),
                                     new Customer("Benjamin Harrison", "bharrison", "bh-password")
                                 };
+
+            if(Feature.AdminAccount.IsEnabled())
+            {
+                customers.Add(Customer.CreateAdminUser("Admin", "admin", "pw"));
+            }
 
             var movies = new List<Movie>
                              {

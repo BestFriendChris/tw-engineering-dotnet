@@ -3,7 +3,7 @@ using VideoWorld.Models;
 
 namespace VideoWorld.Repositories
 {
-    public class TransactionRepository : ListBasedRepository<Transaction>, ITransactionRepository
+    public class TransactionRepository : BaseRepository<Transaction>, ITransactionRepository
     {
         public IEnumerable<Transaction> TransactionsBy(Customer customer)
         {

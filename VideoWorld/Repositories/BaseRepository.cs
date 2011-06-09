@@ -4,16 +4,16 @@ using System.Linq;
 
 namespace VideoWorld.Repositories
 {
-    public class ListBasedRepository<T> : IRepository<T>
+    public class BaseRepository<T> : IRepository<T>
     {
         private readonly List<T> objects;
 
-        public ListBasedRepository()
+        public BaseRepository()
         {
             objects = new List<T>();
         }
 
-        public ListBasedRepository(IEnumerable<T> entities)
+        public BaseRepository(IEnumerable<T> entities)
         {
             objects = new List<T>(entities);
         }
@@ -56,13 +56,7 @@ namespace VideoWorld.Repositories
         public List<T> SelectSatisfying(Specification<T> specification) {
             return SelectSatisfyingIntoCollection(specification);
         }
-        
-        public List<T> SelectSatisfying(Specification<T> specification, Comparer<T> comparator) {
-            var result = SelectSatisfyingIntoCollection(specification);
-            result.Sort(comparator);
-            return result;
-        }
-        
+
         public T SelectUnique(Specification<T> specification)  {
             var results = SelectSatisfyingIntoCollection(specification);
             return results.SingleOrDefault();

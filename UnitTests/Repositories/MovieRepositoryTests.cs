@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using VideoWorld.Models;
 using VideoWorld.Repositories;
 
-namespace UnitTests.Models
+namespace UnitTests.Repositories
 {
     public class MovieRepositoryTests
     {

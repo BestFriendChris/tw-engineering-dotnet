@@ -5,7 +5,7 @@ using VideoWorld.Models;
 
 namespace VideoWorld.Repositories
 {
-    public class RentalRepository : ListBasedRepository<Rental>, IRentalRepository
+    public class RentalRepository : BaseRepository<Rental>, IRentalRepository
     {
         public List<Rental> RentalsFor(Customer customer)
         {

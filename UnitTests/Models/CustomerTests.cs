@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using NUnit.Framework;
 using VideoWorld.Models;
 using VideoWorld.Utils;
@@ -66,6 +67,24 @@ namespace UnitTests.Models
             Assert.True(customer.IsUsernameAndPasswordValid("jsmith","password"));
         }
 
+        [Test]
+        public void CreateAdminUser()
+        {
+            SetCurrentIteration("2");
+            var adminUser = Customer.CreateAdminUser("Test Admin", "admin", "password");
+            Assert.True(adminUser.IsAdmin);
+        }
 
+        [Test, ExpectedException(typeof(NotSupportedException), ExpectedMessage = "Admin account feature is not enabled")]
+        public void CreateAdminUserThrowsExceptionForIteration1()
+        {
+            SetCurrentIteration("1");
+            Customer.CreateAdminUser("Fake Admin", "i1Admin", "pword");
+        }
+
+        private static void SetCurrentIteration(string iteration)
+        {
+            ConfigurationManager.AppSettings["CurrentIteration"] = iteration;
+        }
     }
 }

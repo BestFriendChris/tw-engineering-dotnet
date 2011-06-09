@@ -14,8 +14,6 @@ namespace VideoWorld.Repositories
 
         List<T> SelectSatisfying(Specification<T> specification);
 
-        List<T> SelectSatisfying(Specification<T> specification, Comparer<T> comparator);
-
         T SelectUnique(Specification<T> specification);
     }
 }

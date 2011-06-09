@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using VideoWorld.Models;
 using VideoWorld.Repositories;
 
-namespace UnitTests.Models
+namespace UnitTests.Repositories
 {
     class TransactionRepositoryTests
     {

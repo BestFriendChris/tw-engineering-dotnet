@@ -88,6 +88,7 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Repositories\MovieRepository.cs" />
     <Compile Include="Models\NewReleasePrice.cs" />
+    <Compile Include="Utils\Feature.cs" />
     <Compile Include="Utils\Period.cs" />
     <Compile Include="Models\RegularPrice.cs" />
     <Compile Include="Models\Rental.cs" />
@@ -99,7 +100,7 @@
     <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\IRentalRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="Repositories\ListBasedRepository.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\Specification.cs" />
     <Compile Include="ViewModels\CurrentRentalsModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

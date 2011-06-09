@@ -4,7 +4,7 @@ using VideoWorld.Models;
 
 namespace VideoWorld.Repositories
 {
-    public class MovieRepository : ListBasedRepository<Movie>, IMovieRepository
+    public class MovieRepository : BaseRepository<Movie>, IMovieRepository
     {
         public Movie ByTitle(string title)
         {
