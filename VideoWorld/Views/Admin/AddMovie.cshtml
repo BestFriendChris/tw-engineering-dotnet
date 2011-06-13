@@ -1,0 +1,16 @@
+@model VideoWorld.ViewModels.NewMovieViewModel
+
+@{
+    ViewBag.Title = "Add Movie";
+}
+
+<h2>Add Movie</h2>
+<p>@Model.ErrorMessage</p>
+<div class="addMovie_form">
+ <form method="post" action="/admin/newmovie">
+        <div> Movie Title: <input type="text" name="title" value="@Model.Title"/></div>
+        <input type="submit" name="addNewMovie" class="addNewMovie" value="Create" />
+    </form>
+</div>
+
+    

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using VideoWorld.Models;
+﻿using VideoWorld.Models;
 
 namespace VideoWorld.Repositories
 {
@@ -9,6 +7,11 @@ namespace VideoWorld.Repositories
         public Movie ByTitle(string title)
         {
             return SelectUnique(MovieSpecification.ByTitle(title));
+        }
+
+        public bool HasMovieByTitle(string title)
+        {
+            return SelectSatisfying(MovieSpecification.ByTitle(title)).Count > 0;
         }
     }
 }

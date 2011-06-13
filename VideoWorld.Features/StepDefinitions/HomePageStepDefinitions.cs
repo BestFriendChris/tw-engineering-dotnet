@@ -250,6 +250,21 @@ namespace VideoWorld.Features.StepDefinitions
         {
             var element = WebDriver.FindElement(By.TagName("h2"), e => e.Text == "Add Customer");
             Assert.IsNotNull(element);
+        } 
+        
+        [When(@"I click on the add movie link")]
+        public void ClickOnTheAddMovieLink()
+        {
+            var element = WebDriver.FindElement(By.TagName("a"), e => e.Text == "Add New Movie");
+            Assert.IsNotNull(element);
+            element.Click();
+        }
+
+        [Then(@"the system shows me the add movie page")]
+        public void ThenTheSystemShowsMeTheAddMoviePage()
+        {
+            var element = WebDriver.FindElement(By.TagName("h2"), e => e.Text == "Add Movie");
+            Assert.IsNotNull(element);
         }
     }
 

@@ -106,6 +106,7 @@
     <Compile Include="ViewModels\NewCustomerViewModel.cs" />
     <Compile Include="ViewModels\CurrentRentalsModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\NewMovieViewModel.cs" />
     <Compile Include="ViewModels\StatementViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +128,7 @@
     <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\AddCustomer.cshtml" />
+    <Content Include="Views\Admin\AddMovie.cshtml" />
     <None Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Transaction\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />

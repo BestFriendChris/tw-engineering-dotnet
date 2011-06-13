@@ -93,6 +93,27 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add new movie")]
+        [NUnit.Framework.CategoryAttribute("web")]
+        public virtual void AddNewMovie()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add new movie", new string[] {
+                        "web"});
+#line 20
+this.ScenarioSetup(scenarioInfo);
+#line 21
+ testRunner.Given("I am logged in as \"admin\" with \"pw\"");
+#line 22
+ testRunner.When("I navigate to the admin page");
+#line 23
+ testRunner.And("I click on the add movie link");
+#line 24
+ testRunner.Then("the system shows me the add movie page");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion

@@ -62,11 +62,14 @@ This is a good place to discuss DDD :-D
 Note that the statement does not contain the number of days for a rental. 
 This is in the original version of the code but is probably a Bad Thing.
 
-h3. Repositories using Specification
-Not necessarily the most straight forward way, tried to emulate the Java version, maybe a good place to discuss various approaches.
+h3. Repository tests
 
 CustomerRepository tests do not include all flows 
 
-h3.
-Feature class
+h3. Feature class
 CurrentIteration(). Refactor? yes ! 
+
+h3. Admin Controller
+
+If statements in add customer can be replaced by a validator maybe?
+The admin controller might be a bit bloated. Refactor?

@@ -1,5 +1,4 @@
 ﻿using System;
-using VideoWorld.Models;
 
 namespace VideoWorld.ViewModels
 {
@@ -22,9 +21,15 @@ namespace VideoWorld.ViewModels
             ErrorMessage = errorMessage;
         }
 
-        private string ClearPasswordFields()
+        private void ClearPasswordFields()
         {
-            return Password1 = Password2 = string.Empty;
+            Password1 = Password2 = string.Empty;
+        }
+
+        public bool AllFieldsNotPopulated()
+        {
+            return string.IsNullOrEmpty(DisplayName) || string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password1) ||
+            string.IsNullOrEmpty(Password2);
         }
     }
 }

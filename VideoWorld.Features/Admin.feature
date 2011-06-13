@@ -15,3 +15,11 @@ Scenario: Add new customer
 	When I navigate to the admin page
 	And I click on the add customer link
 	Then the system shows me the add customer page
+
+@web
+Scenario: Add new movie
+	Given I am logged in as "admin" with "pw"
+	When I navigate to the admin page
+	And I click on the add movie link
+	Then the system shows me the add movie page
+

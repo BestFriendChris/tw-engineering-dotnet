@@ -5,5 +5,6 @@ namespace VideoWorld.Repositories
     public interface IMovieRepository : IRepository<Movie>
     {
         Movie ByTitle(string title);
+        bool HasMovieByTitle(string title);
     }
 }
