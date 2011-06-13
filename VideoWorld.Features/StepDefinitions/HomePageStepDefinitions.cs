@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
 using TechTalk.SpecFlow;
 using VideoWorld.Features.Support;
 
@@ -174,7 +170,7 @@ namespace VideoWorld.Features.StepDefinitions
         }
 
         [Then(@"I should see the movie ""(.*)"" with a (\d+) day rental")]
-        public void ThenIShouldSeeTheMovieAvatarWithA1DayRental(string movieName, int periodInDays)
+        public void ThenIShouldSeeTheMovieAvatarWithA1DayRental(string movieName, string periodInDays)
         {
             var element = WebDriver.FindElement(By.ClassName("rental"), e => e.Text.Contains(movieName));
             var periodelement = element.FindElement(By.ClassName("period"));
@@ -222,6 +218,38 @@ namespace VideoWorld.Features.StepDefinitions
             var elements = WebDriver.FindElements(By.ClassName("transaction"));
             Assert.That(elements.Count, Is.EqualTo(1), WebDriver.PageSource);
             
+        }
+
+
+        [When(@"I navigate to the admin page")]
+        public void WhenINavigateToTheAdminPage()
+        {
+            var element = WebDriver.FindElement(By.TagName("a"), e => e.Text == "Admin");
+            Assert.IsNotNull(element);
+            element.Click();
+
+        }
+
+        [Then(@"the system shows me the admin page")]
+        public void ThenTheSystemShowsMeTheAdminPage()
+        {
+            var elements = WebDriver.FindElements(By.ClassName("customers"));
+            Assert.That(elements, Has.Count.GreaterThan(0));
+        }
+
+        [When(@"I click on the add customer link")]
+        public void ClickOnTheAddCustomerLink()
+        {
+            var element = WebDriver.FindElement(By.TagName("a"), e => e.Text == "Add New Customer");
+            Assert.IsNotNull(element);
+            element.Click();
+        }
+
+        [Then(@"the system shows me the add customer page")]
+        public void ThenTheSystemShowsMeTheAddCustomerPage()
+        {
+            var element = WebDriver.FindElement(By.TagName("h2"), e => e.Text == "Add Customer");
+            Assert.IsNotNull(element);
         }
     }
 

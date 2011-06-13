@@ -1,0 +1,19 @@
+@model VideoWorld.ViewModels.NewCustomerViewModel
+
+@{
+    ViewBag.Title = "Add Customer";
+}
+
+<h2>Add Customer</h2>
+<p>@Model.ErrorMessage</p>
+<div class="addCustomers_form">
+ <form method="post" action="/admin/newcustomer">
+        <div> Display Name: <input type="text" name="displayName" value="@Model.DisplayName"/></div>
+        <div> Username: <input type="text" name="username" value="@Model.Username" /></div>
+        <div> Password: <input type="password" name="password1" value="@Model.Password1" /></div>
+        <div> Password (again): <input type="password" name="password2" value="@Model.Password2" /></div>
+        <input type="submit" name="addNewCustomer" class="addNewCustomer" value="Create" />
+    </form>
+</div>
+
+    

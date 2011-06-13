@@ -5,12 +5,15 @@
 }
 
 <h2>Customers</h2>
+<div class="customers">
 @foreach(var customer in Model) {
     <ul>
         <li>
             @customer.DisplayName  (@customer.Username)
         </li>
     </ul>
-    }
 
+    }
+</div>
+<a href="/admin/addcustomer">Add New Customer</a>
     
