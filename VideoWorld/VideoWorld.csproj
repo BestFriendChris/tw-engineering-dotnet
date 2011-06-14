@@ -71,6 +71,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\CurrentRentalsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Controllers\KnownUsersAuthorizationFilter.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\ChildrensPrice.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\DetailedMovie.cs" />
     <Compile Include="Repositories\IMovieRepository.cs" />
     <Compile Include="Repositories\ITransactionRepository.cs" />
     <Compile Include="Utils\Duration.cs" />
@@ -102,7 +104,6 @@
     <Compile Include="Repositories\IRentalRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
-    <Compile Include="Repositories\Specification.cs" />
     <Compile Include="ViewModels\NewCustomerViewModel.cs" />
     <Compile Include="ViewModels\CurrentRentalsModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

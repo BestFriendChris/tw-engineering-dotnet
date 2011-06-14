@@ -7,7 +7,7 @@ namespace VideoWorld.Repositories
     {
         public IEnumerable<Transaction> TransactionsBy(Customer customer)
         {
-            return SelectSatisfying(TransactionSpecification.ByCustomer(customer));
+            return Select(transaction => transaction.Customer.Equals(customer));
         }
     }
 }

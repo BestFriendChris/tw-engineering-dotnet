@@ -20,11 +20,22 @@
     <th>Title</th>
     <th>Price Code</th>
     <th>Days</th>
+        <th>Director</th>
+        <th>Actor</th>
+        <th>Actress</th>
+        <th>Category</th>
 </tr>
+
 @foreach (var item in Model.Movies) {    
     <tr class="movie">
         <td class="title">@item.Title</td>
-        <td class="title">@item.Price.DisplayName</td>
+        <td class="price">@item.Price.DisplayName</td>
+        @if(Model.ShowDetailedMovies) {
+        <td class="director">@item.Director</td>
+        <td class="actor">@item.Actor</td>
+        <td class="actress">@item.Actress</td>
+        <td class="category">@item.Category</td>
+        @}
         <td>
             <form method="post" action="/cart">
                 <input type="hidden" name="title" value="@item.Title"/>
@@ -35,6 +46,12 @@
                     <option value="@i">@i</option>
                     }
                 </select>
+                @if(Model.ShowDetailedMovies) {
+                    <input type="hidden" name="title" value="@item.Director"/>
+                    <input type="hidden" name="priceCode" value="@item.Actor" />
+                    <input type="hidden" name="title" value="@item.Actress"/>
+                    <input type="hidden" name="priceCode" value="@item.Category" />
+                }
                 <td><input type="submit" class="addToCart" name="addToCart" value="Add"/></td>
             </form>
         </td>

@@ -7,11 +7,14 @@ namespace VideoWorld.Repositories
 {
     public class RentalRepository : BaseRepository<Rental>, IRentalRepository
     {
-        public List<Rental> RentalsFor(Customer customer)
+        public List<Rental> AllRentalsFor(Customer customer)
         {
-            List<Rental> rentals = SelectSatisfying(RentalSpecification.ByCustomer(customer));
-            List<Rental> rentalsFor = rentals.Where(EndDateBeforeNow()).ToList();
-            return rentalsFor;
+            return Select(rental => rental.Customer.Equals(customer));
+        }
+
+        public List<Rental> CurrentRentalsFor(Customer customer)
+        {
+            return AllRentalsFor(customer).Where(EndDateBeforeNow()).ToList();
         }
 
         private static Func<Rental, bool> EndDateBeforeNow()

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Web.SessionState;
 using VideoWorld.Models;
 using VideoWorld.Repositories;
 using VideoWorld.ViewModels;
+using System.Linq;
 
 namespace VideoWorld.Controllers
 {
@@ -20,7 +22,12 @@ namespace VideoWorld.Controllers
 
         public ViewResult Index()
         {
-            return LoginView(new LoginViewModel { AllCustomers = customerRepository.SelectAllInAlphabeticalOrder()});
+            return LoginView(new LoginViewModel { AllCustomers = GetAllCustomers()});
+        }
+
+        private List<Customer> GetAllCustomers()
+        {
+            return customerRepository.SelectAll().OrderBy(customer => customer.Username).ToList();
         }
 
         private ViewResult LoginView(LoginViewModel model)
@@ -37,12 +44,12 @@ namespace VideoWorld.Controllers
                                          {
                                              Username = username,
                                              ErrorMessage = USERNAME_EMPTY_ERROR,
-                                             AllCustomers = customerRepository.SelectAllInAlphabeticalOrder()
+                                             AllCustomers = GetAllCustomers()
                                          };
                 return LoginView(loginViewModel);
             }
 
-            var customer = customerRepository.SelectUnique(CustomerSpecification.ByUserNameAndPassword(username, password) );
+            var customer = customerRepository.SelectUnique(cust => cust.IsUsernameAndPasswordValid(username, password));
 
             if (customer == null)
             {
@@ -50,7 +57,7 @@ namespace VideoWorld.Controllers
                                          {
                                              Username = username,
                                              ErrorMessage = INVALID_USERNAME_PASSWORD_ERROR,
-                                             AllCustomers = customerRepository.SelectAllInAlphabeticalOrder()
+                                             AllCustomers = GetAllCustomers()
                                          };
                 return LoginView(loginViewModel);
             }

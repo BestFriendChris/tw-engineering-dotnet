@@ -6,12 +6,12 @@ namespace VideoWorld.Repositories
     {
         public Movie ByTitle(string title)
         {
-            return SelectUnique(MovieSpecification.ByTitle(title));
+            return SelectUnique(movie => movie.Title == title);
         }
 
         public bool HasMovieByTitle(string title)
         {
-            return SelectSatisfying(MovieSpecification.ByTitle(title)).Count > 0;
+            return Select(movie => movie.Title == title).Count > 0;
         }
     }
 }

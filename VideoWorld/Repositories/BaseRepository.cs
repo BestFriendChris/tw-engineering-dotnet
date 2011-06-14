@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace VideoWorld.Repositories
 {
-    public class BaseRepository<T> : IRepository<T>
+    public class BaseRepository<T> : IRepository<T> where T : class
     {
         private readonly List<T> objects;
 
@@ -44,27 +44,18 @@ namespace VideoWorld.Repositories
 
             
         public List<T> SelectAll() {
-            return new List<T>(objects);
-        }
-            
-        public List<T> SelectAll(Comparer<T> comparator) {
-            var result = new List<T>(objects);
-            result.Sort(comparator);
-            return result;
-        }
-        
-        public List<T> SelectSatisfying(Specification<T> specification) {
-            return SelectSatisfyingIntoCollection(specification);
+            return objects;
         }
 
-        public T SelectUnique(Specification<T> specification)  {
-            var results = SelectSatisfyingIntoCollection(specification);
-            return results.SingleOrDefault();
-        }
-        
-        private List<T> SelectSatisfyingIntoCollection(Specification<T> specification) 
+        public List<T> Select(Func<T, bool> condition)
         {
-            return new List<T>(objects.Where(arg => specification(arg)));
+            return objects.Where(condition).ToList();
         }
+
+        public T SelectUnique(Func<T, bool> condition)
+        {
+            return objects.SingleOrDefault(condition);
+        }
+
     }
 }

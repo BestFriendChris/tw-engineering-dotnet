@@ -25,7 +25,7 @@ namespace UnitTests.Models
         private static readonly Movie ChildrensMovieInstance = new Movie("Childrens", new ChildrensPrice());
 
         [Test]
-        public void ShouldCalculateCorrentFrequentRenterPointsForNonNewReleaseMovie()
+        public void ShouldCalculateCorrectFrequentRenterPointsForNonNewReleaseMovie()
         {
             Assert.AreEqual(1, RegularMovieInstance.Price.GetFrequentRenterPoints(1));
             Assert.AreEqual(1, RegularMovieInstance.Price.GetFrequentRenterPoints(4));
@@ -34,7 +34,7 @@ namespace UnitTests.Models
         }
 
         [Test]
-        public void ShouldCalculateCorrentFrequentRenterPointsForNewReleaseMovie()
+        public void ShouldCalculateCorrectFrequentRenterPointsForNewReleaseMovie()
         {
             Assert.AreEqual(1, NewReleaseMovieInstance.Price.GetFrequentRenterPoints(1));
             Assert.AreEqual(2, NewReleaseMovieInstance.Price.GetFrequentRenterPoints(2));

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace VideoWorld.Repositories
 {
@@ -10,10 +11,8 @@ namespace VideoWorld.Repositories
 
         List<T> SelectAll();
 
-        List<T> SelectAll(Comparer<T> orderBy);
+        List<T> Select(Func<T,bool> condition);
 
-        List<T> SelectSatisfying(Specification<T> specification);
-
-        T SelectUnique(Specification<T> specification);
+        T SelectUnique(Func<T,bool> condition);
     }
 }

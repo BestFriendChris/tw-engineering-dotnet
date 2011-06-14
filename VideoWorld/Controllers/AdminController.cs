@@ -1,11 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.Routing;
+using Ninject;
+using Ninject.Web.Mvc;
 using VideoWorld.Models;
 using VideoWorld.Repositories;
+using VideoWorld.Utils;
 using VideoWorld.ViewModels;
+using System.Linq;
 
 namespace VideoWorld.Controllers
 {
+    [IsAdmin]
     public class AdminController : Controller
     {
         private const string PASSWORD_MATCH_ERROR = "Passwords must match";
@@ -23,7 +30,12 @@ namespace VideoWorld.Controllers
 
         public ViewResult Index()
         {
-            return View("Index", customerRepository.SelectAllInAlphabeticalOrder());
+            return View("Index", GetCustomers());
+        }
+
+        private List<Customer> GetCustomers()
+        {
+            return customerRepository.SelectAll().OrderBy(customer => customer.Username).ToList();
         }
 
         [AcceptVerbs(HttpVerbs.Post), ActionName("NewCustomer")]
@@ -62,7 +74,7 @@ namespace VideoWorld.Controllers
         [AcceptVerbs(HttpVerbs.Post), ActionName("NewMovie")]
         public ActionResult AddNewMovie(NewMovieViewModel model)
         {
-            if (string.IsNullOrEmpty(model.Title))
+            if (model.AllFieldsNotPopulated())
             {
                 model.ErrorMessage = "Must enter all fields.";
             }
@@ -74,7 +86,8 @@ namespace VideoWorld.Controllers
 
             if (model.ErrorMessage == null)
             {
-                movieRepository.Add(new Movie(model.Title, new NewReleasePrice()));
+                var movieToBeAdded = new DetailedMovie(model.Title, new NewReleasePrice(), model.Director, model.Actor, model.Actress, model.Category);
+                movieRepository.Add(movieToBeAdded);
                 return Index();
             }
 
@@ -87,4 +100,22 @@ namespace VideoWorld.Controllers
         }
     }
 
+    public class IsAdminAttribute : AuthorizeAttribute
+    {
+        public override void OnAuthorization(AuthorizationContext filterContext)
+        {
+            var loggedInUser = (string)filterContext.HttpContext.Session["CurrentUser"];
+            var customerRepository = ((NinjectHttpApplication)filterContext.HttpContext.ApplicationInstance).Kernel.Get(typeof(ICustomerRepository)) as CustomerRepository;
+            var customer = customerRepository.SelectUnique(cust => cust.Username == loggedInUser);
+
+            if(Feature.AdminAccount.IsEnabled() && customer != null && customer.IsAdmin)
+               return;
+            filterContext.Result = new RedirectToRouteResult(
+              new RouteValueDictionary
+                    {
+                        {"controller", "Error"},
+                        {"action", "Index"}
+                    });
+        }
+    }
 }

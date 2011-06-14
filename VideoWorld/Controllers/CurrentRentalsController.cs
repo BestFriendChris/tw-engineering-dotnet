@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using VideoWorld.Models;
 using VideoWorld.Repositories;
 using VideoWorld.ViewModels;
-using System.Linq;
 
 namespace VideoWorld.Controllers
 {
@@ -37,13 +36,13 @@ namespace VideoWorld.Controllers
 
         private List<Rental> GetCurrentRentals()
         {
-            return rentalRepository.RentalsFor(GetCurrentCustomer());
+            return rentalRepository.AllRentalsFor(GetCurrentCustomer());
         }
 
         private Customer GetCurrentCustomer()
         {
             var customerName = (String) Session["CurrentUser"];
-            return customerRepository.SelectUnique(CustomerSpecification.ByUserName(customerName));
+            return customerRepository.SelectUnique(customer => customer.Username == customerName);
         }
     }
 }

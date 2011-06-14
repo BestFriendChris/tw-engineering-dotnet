@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using Moq;
 using MvcContrib.TestHelper;
 using NUnit.Framework;
 using VideoWorld.Controllers;

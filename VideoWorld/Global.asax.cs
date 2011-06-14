@@ -62,9 +62,9 @@ namespace VideoWorld
 
             var movies = new List<Movie>
                              {
-                                 new Movie("Avatar", Movie.NEW_RELEASE),
-                                 new Movie("Up in the Air", Movie.REGULAR),
-                                 new Movie("Finding Nemo", Movie.CHILDRENS)
+                                 AddMovie("Avatar", Movie.NEW_RELEASE, "James Cameron", "Sam Worthington", "Zoe Saldana", "Action"),
+                                 AddMovie("Up in the Air", Movie.REGULAR, "Jason Reitman", "George Clooney", "Vera Farmiga", "Drama"),
+                                 AddMovie("Finding Nemo", Movie.CHILDRENS, "Andrew Stanton", "Albert Brooks", "Ellen DeGeneres", "Animation")
                              };
 
             kernel.Bind<ICustomerRepository>().To(typeof (CustomerRepository)).InSingletonScope().OnActivation(repository => repository.Add(customers));
@@ -73,6 +73,13 @@ namespace VideoWorld
             kernel.Bind<IRentalRepository>().To(typeof (RentalRepository)).InSingletonScope();
 
             return kernel;
+        }
+
+        private static Movie AddMovie(string title, IPrice price, string director, string actor, string actress, string category)
+        {
+            if (Feature.DetailedMovies.IsEnabled())
+                return new DetailedMovie(title, price, director, actor, actress, category);
+            return new Movie(title, price);
         }
 
         protected override void OnApplicationStarted()

@@ -34,7 +34,7 @@ namespace VideoWorld.Controllers
         private Customer FindCustomer()
         {
             var currentUsername = (string)Session["CurrentUser"];
-            return customerRepository.SelectUnique(CustomerSpecification.ByUserName(currentUsername));
+            return customerRepository.SelectUnique(customer => customer.Username == currentUsername);
         }
     }
 }
