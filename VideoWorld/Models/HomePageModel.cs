@@ -6,7 +6,9 @@ namespace VideoWorld.Models
 {
     public class HomePageModel
     {
-        public HomePageModel(List<Movie> movies, Customer customer)
+        private readonly List<DetailedMovie> detailedMovies = new List<DetailedMovie>();
+
+        public HomePageModel(IEnumerable<Movie> movies, Customer customer)
         {
             Movies = new List<Movie>(movies);
             Cart = customer.Cart;
@@ -15,9 +17,17 @@ namespace VideoWorld.Models
 
         public List<Movie> Movies { get; private set; }
 
-        public List<DetailedMovie> DetailedMovies {get { if(ShowDetailedMovies) Movies.ForEach(movie => DetailedMovies.Add((DetailedMovie) movie));
-            return DetailedMovies;
-        }
+        public List<DetailedMovie> DetailedMovies
+        {
+            get
+            {
+                if (ShowDetailedMovies)
+                {
+                    Movies.ForEach(movie => detailedMovies.Add(movie as DetailedMovie));
+                    return detailedMovies;
+                }
+                throw new NotSupportedException("Detailed Movies Feature is not enabled.");
+            }
         }
 
         public Cart Cart { get; private set; }

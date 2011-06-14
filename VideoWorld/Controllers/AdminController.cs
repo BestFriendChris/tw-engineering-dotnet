@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Web.Routing;
-using Ninject;
-using Ninject.Web.Mvc;
 using VideoWorld.Models;
 using VideoWorld.Repositories;
 using VideoWorld.Utils;
@@ -22,7 +18,7 @@ namespace VideoWorld.Controllers
         private readonly ICustomerRepository customerRepository;
         private readonly IMovieRepository movieRepository;
 
-        public AdminController(ICustomerRepository customerRepository, IMovieRepository movieRepository)
+        public AdminController(ICustomerRepository customerRepository, IMovieRepository movieRepository) 
         {
             this.customerRepository = customerRepository;
             this.movieRepository = movieRepository;
@@ -86,7 +82,7 @@ namespace VideoWorld.Controllers
 
             if (model.ErrorMessage == null)
             {
-                var movieToBeAdded = new DetailedMovie(model.Title, new NewReleasePrice(), model.Director, model.Actor, model.Actress, model.Category);
+                Movie movieToBeAdded = GetMovieToBeAdded(model);
                 movieRepository.Add(movieToBeAdded);
                 return Index();
             }
@@ -94,28 +90,16 @@ namespace VideoWorld.Controllers
             return AddMovie(model);
         }
 
+        private static Movie GetMovieToBeAdded(NewMovieViewModel model)
+        {
+            return Feature.DetailedMovies.IsEnabled()
+                       ? new DetailedMovie(model.Title, new NewReleasePrice(), model.Director, model.Actor, model.Actress, model.Category)
+                       : new Movie(model.Title, new NewReleasePrice());
+        }
+
         public ViewResult AddMovie(NewMovieViewModel model)
         {
             return View("AddMovie", model);
-        }
-    }
-
-    public class IsAdminAttribute : AuthorizeAttribute
-    {
-        public override void OnAuthorization(AuthorizationContext filterContext)
-        {
-            var loggedInUser = (string)filterContext.HttpContext.Session["CurrentUser"];
-            var customerRepository = ((NinjectHttpApplication)filterContext.HttpContext.ApplicationInstance).Kernel.Get(typeof(ICustomerRepository)) as CustomerRepository;
-            var customer = customerRepository.SelectUnique(cust => cust.Username == loggedInUser);
-
-            if(Feature.AdminAccount.IsEnabled() && customer != null && customer.IsAdmin)
-               return;
-            filterContext.Result = new RedirectToRouteResult(
-              new RouteValueDictionary
-                    {
-                        {"controller", "Error"},
-                        {"action", "Index"}
-                    });
         }
     }
 }

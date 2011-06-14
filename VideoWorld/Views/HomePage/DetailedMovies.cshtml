@@ -1,0 +1,36 @@
+﻿@model VideoWorld.Models.HomePageModel
+<table class="movies">
+<tr>
+    <th>Title</th>
+    <th>Price Code</th>
+    <th>Days</th>
+    <th>Director</th>
+    <th>Actor</th>
+    <th>Actress</th>
+    <th>Category</th>
+</tr>
+@foreach (var item in Model.DetailedMovies) {    
+    <tr class="movie">
+        <td class="title">@item.Title</td>
+        <td class="price">@item.Price.DisplayName</td>
+        <td class="director">@item.Director</td>
+        <td class="actor">@item.Actor</td>
+        <td class="actress">@item.Actress</td>
+        <td class="category">@item.Category</td>
+        <td>
+            <form method="post" action="/cart">
+                <input type="hidden" name="title" value="@item.Title"/>
+                <input type="hidden" name="priceCode" value="@item.Price" />
+                <select name="numberOfDays">
+                    @for (int i = 1; i <= 7; i++)
+                    {
+                    <option value="@i">@i</option>
+                    }
+                </select>
+                <td><input type="submit" class="addToCart" name="addToCart" value="Add"/></td>
+            </form>
+        </td>
+    </tr>
+}
+</table>
+

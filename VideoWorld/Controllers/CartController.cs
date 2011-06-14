@@ -6,21 +6,19 @@ using VideoWorld.Utils;
 
 namespace VideoWorld.Controllers
 {
-    public class CartController : Controller
+    public class CartController : BaseController
     {
-        private readonly ICustomerRepository customerRepository;
         private readonly IMovieRepository movieRepository;
 
-        public CartController(ICustomerRepository customerRepository, IMovieRepository movieRepository)
+        public CartController(ICustomerRepository customerRepository, IMovieRepository movieRepository) : base(customerRepository)
         {
-            this.customerRepository = customerRepository;
             this.movieRepository = movieRepository;
         }
 
         [AcceptVerbs(HttpVerbs.Post), ActionName("Index")]
         public RedirectResult RentMovie(string title, int numberOfDays)
         {
-            var customer = FindCustomer();
+            var customer = LoggedInCustomer();
             Period periodInDays = Period.Of(DateTime.Now, new Duration(numberOfDays));
             var movie = movieRepository.ByTitle(title);
             customer.Cart.AddMovie(movie, periodInDays, customer);
@@ -30,14 +28,8 @@ namespace VideoWorld.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ViewResult Index()
         {
-            Customer customer = FindCustomer();
+            Customer customer = LoggedInCustomer();
             return View("Index", customer.Cart);
-        }
-
-        private Customer FindCustomer()
-        {
-            var currentUsername = (string)Session["CurrentUser"];
-            return customerRepository.SelectUnique(customer => customer.Username == currentUsername);
         }
     }
 }

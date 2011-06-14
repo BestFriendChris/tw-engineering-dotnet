@@ -14,7 +14,7 @@ namespace VideoWorld.Utils
         this.minIteration = minIteration;
     }
 
-    public static Feature DetailedMovies { get { return new Feature(2); } }
+    public static Feature DetailedMovies { get { return new Feature(3); } }
 
     public static Feature AdminAccount { get { return new Feature(2); } }
 

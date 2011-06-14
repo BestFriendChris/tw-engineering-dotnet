@@ -68,11 +68,13 @@
   <ItemGroup>
     <Compile Include="Configuration\NinjectSessionScopingExtension.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\CurrentRentalsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
+    <Compile Include="Controllers\IsAdminAttribute.cs" />
     <Compile Include="Controllers\KnownUsersAuthorizationFilter.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
@@ -164,6 +166,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\HomePage\DetailedMovies.cshtml" />
+    <Content Include="Views\HomePage\Movies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\HomePage\Index.cshtml" />

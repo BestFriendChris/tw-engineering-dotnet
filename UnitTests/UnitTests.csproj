@@ -63,7 +63,6 @@
     <Compile Include="Controllers\TransactionControllerTest.cs" />
     <Compile Include="Controllers\HomePageControllerTests.cs" />
     <Compile Include="Models\ChildrensPriceTest.cs" />
-    <Compile Include="Models\DetailedMovieTests.cs" />
     <Compile Include="Repositories\CustomerRepositoryTests.cs" />
     <Compile Include="Repositories\RentalRepositoryTests.cs" />
     <Compile Include="Repositories\TransactionRepositoryTests.cs" />

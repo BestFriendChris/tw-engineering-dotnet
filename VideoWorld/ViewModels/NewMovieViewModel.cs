@@ -1,4 +1,5 @@
 ﻿using System;
+using VideoWorld.Utils;
 
 namespace VideoWorld.ViewModels
 {
@@ -16,10 +17,14 @@ namespace VideoWorld.ViewModels
 
         public string Category { get; set; }
 
+        public bool ShowDetailedMovies { get { return Feature.DetailedMovies.IsEnabled(); } }
+
         public bool AllFieldsNotPopulated()
         {
-            return string.IsNullOrEmpty(Title) || string.IsNullOrEmpty(Director) || string.IsNullOrEmpty(Actor) ||
-                   string.IsNullOrEmpty(Actress) || string.IsNullOrEmpty(Category);
+            return ShowDetailedMovies ? 
+                string.IsNullOrEmpty(Title) || string.IsNullOrEmpty(Director) || string.IsNullOrEmpty(Actor) || string.IsNullOrEmpty(Actress) || string.IsNullOrEmpty(Category)
+                : 
+                string.IsNullOrEmpty(Title);
         }
     }
 }
