@@ -5,7 +5,7 @@
 }
 
 <h2>Login</h2>
-<p>@Model.ErrorMessage</p>
+<label class="error">@Model.ErrorMessage</label>
 <form method="post" action="/login">
     <div> Username: <input type="text" name="username" value="@Model.Username"/></div>
     <div> Password: <input type="password" name="password" value="@Model.Password" /></div>

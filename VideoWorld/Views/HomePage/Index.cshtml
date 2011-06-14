@@ -4,19 +4,16 @@
     ViewBag.Title = "Index";
 }
 
-@section adminLink {
-@if(Model.ShowAdminLink) {
-    <a href="/admin">Admin</a>
-}
-}
-<h2>Index</h2>
+<h2>Rent a Movie</h2>
 
 <div class="cart">
    @Model.Cart.Count item(s) in your cart.
 </div>
-
+<div class="movieGrid">
+<h2>Now Showing!</h2>
 @if(Model.ShowDetailedMovies) {
     @Html.Partial("DetailedMovies"); 
 } else {
     @Html.Partial("Movies"); 
 }    
+</div>

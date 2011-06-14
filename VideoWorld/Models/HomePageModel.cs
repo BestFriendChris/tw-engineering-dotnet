@@ -12,7 +12,6 @@ namespace VideoWorld.Models
         {
             Movies = new List<Movie>(movies);
             Cart = customer.Cart;
-            ShowAdminLink = customer.IsAdmin;
         }
 
         public List<Movie> Movies { get; private set; }
@@ -31,8 +30,6 @@ namespace VideoWorld.Models
         }
 
         public Cart Cart { get; private set; }
-
-        public bool ShowAdminLink { get; private set; }
 
         public bool ShowDetailedMovies { get { return Feature.DetailedMovies.IsEnabled(); } }
     }

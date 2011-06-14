@@ -5,13 +5,13 @@
 }
 
 <h2>Add Customer</h2>
-<p>@Model.ErrorMessage</p>
-<div class="addCustomers_form">
+<label class="error">@Model.ErrorMessage</label>
+<div class="addCustomer_form">
  <form method="post" action="/admin/newcustomer">
-        <div> Display Name: <input type="text" name="displayName" value="@Model.DisplayName"/></div>
-        <div> Username: <input type="text" name="username" value="@Model.Username" /></div>
-        <div> Password: <input type="password" name="password1" value="@Model.Password1" /></div>
-        <div> Password (again): <input type="password" name="password2" value="@Model.Password2" /></div>
+        <div> <label for="displayName">Display Name: </label> <input type="text" name="displayName" value="@Model.DisplayName"/></div>
+        <div> <label for="username">Username: </label> <input type="text" name="username" value="@Model.Username" /></div>
+        <div> <label for="password1">Password: </label><input type="password" name="password1" value="@Model.Password1" /></div>
+        <div> <label for="password2">Password (again): </label><input type="password" name="password2" value="@Model.Password2" /></div>
         <input type="submit" name="addNewCustomer" class="addNewCustomer" value="Create" />
     </form>
 </div>

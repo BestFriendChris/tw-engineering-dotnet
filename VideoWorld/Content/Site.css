@@ -1,9 +1,12 @@
-body
-{
-    font-size: 75%;
-    font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
-    color: #232323;
-    background-color: #fff;
+body {
+	margin: 0 10px 0 10px;
+	font : normal 12px Verdana, Arial, Helvetica, sans-serif;
+    color: #0464BB; 
+    padding: 0;
+}
+
+.error {
+    color: Red;
 }
 
 /* Styles for basic forms
@@ -67,7 +70,82 @@ textarea
     display: none;
 }
 
-.statement 
+.transaction 
 {
     font-size: medium;
+}
+
+.header {
+	margin: 0 -10px 0 -10px;
+	background-color: #ccccff;
+	padding: 0;
+	text-align: center;
+	height: 2em;
+}
+
+.header h2 {
+	padding: 0;
+	margin: 0;
+	display: inline;
+}
+
+.header .tab {
+	background-color: #aaaaff;
+	float: right;
+	margin: 0 1em 0 1em;
+	padding: 0 10px 0 10px;
+	height: 100%;
+	color: #ffffff;
+}
+
+.cart 
+{
+    font-size: medium;
+    text-align: left;
+}
+
+table.movies {
+    border-collapse:collapse;
+    width: 75%;
+    text-align: left;
+}
+
+table.movies tr td, th td {
+    border: 1px solid black;
+}
+
+table.movies td#addButton
+{
+    text-align: center;
+}
+
+div input[type=text],
+div input[type=password]
+{
+    margin: 5px;
+}
+
+div.movieGrid 
+{
+    width: auto;
+}
+
+.addMovie_form label,
+.addCustomer_form label
+{
+    width:10%;
+    float:left;
+    margin: 5px;
+}
+
+table.rentals
+{
+    width: 25%;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+div.transactionHistory
+{
+    margin-bottom: 20px;
 }

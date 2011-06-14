@@ -5,16 +5,16 @@
 }
 
 <h2>Add Movie</h2>
-<p>@Model.ErrorMessage</p>
+<label class="error">@Model.ErrorMessage</label>
 <div class="addMovie_form">
  <form method="post" action="/admin/newmovie">
-        <div> Movie Title: <input type="text" name="title" value="@Model.Title"/></div> 
+        <div> <label for="director"> Movie Title: </label> <input type="text" name="title" value="@Model.Title"/></div> 
         @if (Model.ShowDetailedMovies)
         {
-            <div> Director: <input type="text" name="director" value="@Model.Director"/></div> 
-            <div> Actor: <input type="text" name="actor" value="@Model.Actor"/></div> 
-            <div> Actress: <input type="text" name="actress" value="@Model.Actress"/></div> 
-            <div> Category: <input type="text" name="category" value="@Model.Category"/></div>
+            <div> <label for="director">Director: </label><input type="text" name="director" value="@Model.Director"/></div> 
+            <div> <label for="actor">Actor: </label><input type="text" name="actor" value="@Model.Actor"/></div> 
+            <div> <label for="actress">Actress: </label><input type="text" name="actress" value="@Model.Actress"/></div> 
+            <div> <label for="category">Category: </label><input type="text" name="category" value="@Model.Category"/></div>
         }
         <input type="submit" name="addNewMovie" class="addNewMovie" value="Create" />
     </form>

@@ -52,14 +52,13 @@ namespace VideoWorld.Features.StepDefinitions
             var button = WebDriver.FindElement(By.TagName("input"), e => e.GetAttribute("name") == "login");
             Assert.IsNotNull(button);
             button.Click();
-
-            WebDriver.WaitForElement(By.ClassName("movies"));
+                
+            WebDriver.WaitForElement(By.ClassName("cart"));
         }
 
         [Given(@"I am logged in as ""(.*)"" with ""(.*)""")]
         public void GivenIAmLoggedInAs(string username, string password)
         {
-            WhenILogout();
             WhenINavigateToTheLoginPage();
             WhenLoginAs(username, password);
         }
@@ -67,14 +66,14 @@ namespace VideoWorld.Features.StepDefinitions
         [Then(@"the system shows me the home page")]
         public void ThenTheSystemShowsMeTheHomePage()
         {
-            var element = WebDriver.FindElement(By.TagName("h2"), e => e.Text == "Index");
+            var element = WebDriver.FindElement(By.TagName("h2"), e => e.Text == "Rent a Movie");
             Assert.IsNotNull(element);
         }
 
         [When(@"I view the list of available movies")]
         public void WhenIGoToTheHomePage()
         {
-            var element = WebDriver.FindElement(By.TagName("a"), e => e.Text == "View Movies");
+            var element = WebDriver.FindElement(By.TagName("a"), e => e.Text == "Rent Movies");
             Assert.IsNotNull(element);
             element.Click();
 
@@ -215,7 +214,7 @@ namespace VideoWorld.Features.StepDefinitions
         [Then(@"I should see 1 history item")]
         public void ThenIShouldSee1HistoryItem()
         {
-            var elements = WebDriver.FindElements(By.ClassName("transaction"));
+            var elements = WebDriver.FindElements(By.ClassName("transactionHistory"));
             Assert.That(elements.Count, Is.EqualTo(1), WebDriver.PageSource);
             
         }

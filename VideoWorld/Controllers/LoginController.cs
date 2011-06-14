@@ -65,12 +65,14 @@ namespace VideoWorld.Controllers
             customer.Cart.Clear();
 
             Session["CurrentUser"] = username;
+            Session["AdminUser"] = customer.IsAdmin;
             return Redirect("/");
         }
 
         public RedirectResult Logoff()
         {
             Session.Remove("CurrentUser");
+            Session.Remove("AdminUser");
             return Redirect("/login");
         }
     }

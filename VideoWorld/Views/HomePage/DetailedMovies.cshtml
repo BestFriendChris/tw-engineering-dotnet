@@ -1,13 +1,15 @@
 ﻿@model VideoWorld.Models.HomePageModel
+<div class="wiz-content movies">
 <table class="movies">
 <tr>
     <th>Title</th>
     <th>Price Code</th>
-    <th>Days</th>
     <th>Director</th>
     <th>Actor</th>
     <th>Actress</th>
     <th>Category</th>
+    <th>Days</th>
+
 </tr>
 @foreach (var item in Model.DetailedMovies) {    
     <tr class="movie">
@@ -27,10 +29,11 @@
                     <option value="@i">@i</option>
                     }
                 </select>
-                <td><input type="submit" class="addToCart" name="addToCart" value="Add"/></td>
+                <td id="addButton"><input type="submit" class="addToCart" name="addToCart" value="Add"/></td>
             </form>
         </td>
     </tr>
 }
 </table>
+</div>
 

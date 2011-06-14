@@ -2,7 +2,7 @@
 
 namespace VideoWorld.ViewModels
 {
-    public class StatementViewModel
+    public class StatementViewModel 
     {
         public string Statement { get; set; }
 

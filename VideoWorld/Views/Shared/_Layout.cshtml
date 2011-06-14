@@ -4,17 +4,23 @@
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+
 </head>
 
 <body>
-    <div class="header">
-        @RenderSection("adminLink", false)
-        <a href="/">View Movies</a>
-        <a href="/cart">View Cart</a>
-        <a href="/currentRentals">View Current Rentals</a>
-        <a href="/transaction">View History</a>
-        <a href="/logoff">Log off</a>
-    </div>
-    @RenderBody()
+<div class="header"><h2>Video Rental</h2>
+        <a class="tab" href="/logoff">Log off</a>
+        <a class="tab" href="/transaction">View History</a>
+        <a class="tab" href="/currentRentals">View Current Rentals</a>
+        <a class="tab" href="/cart">View Cart</a>
+        <a class="tab" href="/">Rent Movies</a>
+        @if ((bool)Session["AdminUser"])
+        {
+            <a class="tab" href="/admin">Admin</a>
+        }
+
+</div>
+        @RenderBody()
+
 </body>
 </html>

@@ -168,6 +168,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\HomePage\DetailedMovies.cshtml" />
     <Content Include="Views\HomePage\Movies.cshtml" />
+    <Content Include="Views\Login\_ViewStart.cshtml" />
+    <Content Include="Views\Login\_LoginLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\HomePage\Index.cshtml" />

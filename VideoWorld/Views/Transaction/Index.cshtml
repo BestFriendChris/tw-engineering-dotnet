@@ -8,8 +8,8 @@
 
 <div class="transactions">
 @foreach (var transaction in Model) {
-    <div class="transaction">
-        <p>Transaction on @transaction.DateTime.ToShortDateString()</p>
+    <div class="transactionHistory">
+        <h3>Transaction on @transaction.DateTime.ToShortDateString()</h3>
         <p>Movies Rented:</p>
         <div class="rentals"></div>
             @foreach (var rental in transaction.Rentals)
